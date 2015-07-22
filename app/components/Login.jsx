@@ -11,7 +11,7 @@ import LoginActions from 'actions/login-actions';
 
 @connectToStores
 @changeHandler
-export default class Profile extends React.Component {
+export default class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
