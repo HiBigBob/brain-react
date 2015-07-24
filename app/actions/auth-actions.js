@@ -1,7 +1,7 @@
 import alt from '../utils/alt';
 import axios from 'axios';
 
-class LoginActions {
+class AuthActions {
   constructor() {
     this.generateActions('logout', 'loadLocalUser');
   }
@@ -25,4 +25,4 @@ class LoginActions {
   }
 }
 
-module.exports = (alt.createActions(LoginActions));
+module.exports = (alt.createActions(AuthActions));

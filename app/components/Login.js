@@ -6,8 +6,8 @@ import {changeHandler} from '../utils/component-utils';
 
 import connectToStores from 'alt/utils/connectToStores';
 
-import LoginStore from '../stores/login-stores';
-import LoginActions from '../actions/login-actions';
+import AuthStore from '../stores/auth-stores';
+import AuthActions from '../actions/auth-actions';
 
 @connectToStores
 @changeHandler
@@ -25,10 +25,10 @@ export default class Login extends React.Component {
     error: React.PropTypes.string
   }
   static getStores() {
-    return [LoginStore];
+    return [AuthStore];
   }
   static getPropsFromStores() {
-    return LoginStore.getState();
+    return AuthStore.getState();
   }
   componentWillMount() {
     this.state = {
@@ -36,10 +36,10 @@ export default class Login extends React.Component {
     };
   }
   register() {
-    LoginActions.register(this.state.login);
+    AuthActions.register(this.state.login);
   }
   login() {
-    LoginActions.login(this.state.login);
+    AuthActions.login(this.state.login);
   }
   render() {
     var error;
