@@ -1,10 +1,9 @@
-import React from "react";
+import React from 'react';
+import router from './utils/router';
 import './style.css';
-import Greeting from "./components/greeting";
-import Login from "./components/Login";
 
-
-React.render(
-  <Login />,
-  document.body
-);
+router.run(
+  (Handler) => {
+    const app = React.createElement(Handler);
+    React.render(app, document.body);
+});
