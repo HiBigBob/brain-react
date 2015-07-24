@@ -1,7 +1,7 @@
-import alt from 'utils/alt';
+import alt from '../utils/alt';
 import {defer} from 'lodash';
-import LoginActions from 'actions/login-actions';
-import router from 'utils/router';
+import LoginActions from '../actions/login-actions';
+import router from '../utils/router';
 
 const USER_STORAGE_KEY = 'brain';
 

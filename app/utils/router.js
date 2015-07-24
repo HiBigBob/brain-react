@@ -1,5 +1,5 @@
 import Router from 'react-router';
-import routes from 'utils/routes';
+import routes from '../utils/routes';
 
 var config = {routes};
 if (process.env.BROWSER) {
