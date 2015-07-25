@@ -13,7 +13,7 @@ class AuthStore {
   }
   saveUser(data) {
     if (data.ok) {
-      console.log('okay !');
+      console.log('saveUser');
       this.storeUser(data.user);
       this.redirectToHome();
     }
@@ -24,6 +24,7 @@ class AuthStore {
     }
   }
   storeUser(user) {
+    console.log("storeUser");
     this.user = user;
     this.error = null;
     localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user));
