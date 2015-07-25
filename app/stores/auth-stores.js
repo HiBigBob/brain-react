@@ -13,6 +13,7 @@ class AuthStore {
   }
   saveUser(data) {
     if (data.ok) {
+      console.log('okay !');
       this.storeUser(data.user);
       this.redirectToHome();
     }
@@ -47,7 +48,7 @@ class AuthStore {
     localStorage.removeItem(USER_STORAGE_KEY);
   }
   redirectToHome() {
-    defer(router.transitionTo.bind(this, 'directors'));
+    defer(router.transitionTo.bind(this, 'dashboard'));
   }
   redirectToLogin() {
     defer(router.transitionTo.bind(this, 'login'));
@@ -64,4 +65,4 @@ class AuthStore {
   }
 }
 
-module.exports = (alt.createStore(LoginStore));
+module.exports = (alt.createStore(AuthStore));

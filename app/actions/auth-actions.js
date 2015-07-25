@@ -7,8 +7,11 @@ class AuthActions {
   }
   async login(data) {
     try {
-      const response = await axios.post('/auth/login', data);
-      this.dispatch({ok: true, user: response.data});
+      console.log('login');
+      console.log(data);
+      // const response = await axios.post('/authenticate', data);
+      // this.dispatch({ok: true, user: response.data});
+      this.dispatch({ok: true, user: data});
     } catch (err) {
       console.error(err);
       this.dispatch({ok: false, error: err.data});
@@ -22,6 +25,12 @@ class AuthActions {
       console.error(err);
       this.dispatch({ok: false, error: err.data});
     }
+  }
+  getToken() {
+    return localStorage.token;
+  }
+  loggedIn() {
+    return !!localStorage.brain;
   }
 }
 

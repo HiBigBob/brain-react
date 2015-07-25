@@ -39,6 +39,7 @@ export default class Login extends React.Component {
     AuthActions.register(this.state.login);
   }
   login() {
+    console.log('test');
     AuthActions.login(this.state.login);
   }
   render() {
@@ -52,38 +53,43 @@ export default class Login extends React.Component {
             <div className="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
                 <div className="block block-themed animated fadeIn">
                     <div className="block-content block-content-full block-content-narrow">
-                        <h1 className="h2 font-w600 push-30-t push-5">OneUI</h1>
+                        <h1 className="h2 font-w600 push-30-t push-5">Brain</h1>
                         <p>Welcome, please login.</p>
-                        <form className="js-validation-login form-horizontal push-30-t push-50" action="index.html" method="post">
+                        <div className="js-validation-login form-horizontal push-30-t push-50" >
                             <div className="form-group">
                                 <div className="col-xs-12">
                                     <div className="form-material form-material-primary floating">
-                                        <input className="form-control" type="text" id="login-username" name="login-username" />
-                                        <label for="login-username">Username</label>
+                                        <input
+                                          className="form-control"
+                                          type="text"
+                                          id="username"
+                                          name="username"
+                                          value={this.state.login.username}
+                                          onChange={this.changeHandler.bind(this, 'login', 'username')} />
+                                        <label for="username">Username</label>
                                     </div>
                                 </div>
                             </div>
                             <div className="form-group">
                                 <div className="col-xs-12">
                                     <div className="form-material form-material-primary floating">
-                                        <input className="form-control" type="password" id="login-password" name="login-password" />
-                                        <label for="login-password">Password</label>
+                                        <input
+                                          className="form-control"
+                                          type="password"
+                                          id="password"
+                                          name="password"
+                                          value={this.state.login.password}
+                                          onChange={this.changeHandler.bind(this, 'login', 'password')} />
+                                        <label for="password">Password</label>
                                     </div>
-                                </div>
-                            </div>
-                            <div className="form-group">
-                                <div className="col-xs-12">
-                                    <label className="css-input switch switch-sm switch-primary">
-                                        <input type="checkbox" id="login-remember-me" name="login-remember-me" /><span></span> Remember Me?
-                                    </label>
                                 </div>
                             </div>
                             <div className="form-group">
                                 <div className="col-xs-12 col-sm-6 col-md-4">
-                                    <button className="btn btn-block btn-primary" type="submit"><i class="si si-login pull-right"></i> Log in</button>
+                                    <button className="btn btn-block btn-primary" onClick={this.login.bind(this)}><i class="si si-login pull-right"></i> Log in</button>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>

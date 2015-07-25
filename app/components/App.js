@@ -3,13 +3,13 @@ import {RouteHandler} from 'react-router';
 
 import Router from 'react-router';
 import reactMixin from 'react-mixin';
-import LoginActions from '../actions/login-actions';
+import AuthActions from '../actions/auth-actions';
 
 @reactMixin.decorate(Router.State)
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    LoginActions.loadLocalUser();
+    AuthActions.loadLocalUser();
   }
   render() {
     return (
