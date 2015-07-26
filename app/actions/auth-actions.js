@@ -1,5 +1,6 @@
 import alt from '../utils/alt';
 import axios from 'axios';
+import config from '../config';
 
 class AuthActions {
   constructor() {
@@ -8,7 +9,7 @@ class AuthActions {
   async login(data) {
     try {
       console.log('login');
-      const response = await axios.post('http://localhost:3000/authenticate', data);
+      const response = await axios.post(config.api_url + '/authenticate', data);
       this.dispatch({ok: true, user: response.data});
     } catch (err) {
       console.error(err);
@@ -17,7 +18,7 @@ class AuthActions {
   }
   async register(data) {
     try {
-      const response = await axios.post('/auth/register', data);
+      const response = await axios.post(config.api_url + '/auth/register', data);
       this.dispatch({ok: true, user: response.data});
     } catch (err) {
       console.error(err);
@@ -25,7 +26,7 @@ class AuthActions {
     }
   }
   getToken() {
-    return localStorage.token;
+    return localStorage.brain.token;
   }
   loggedIn() {
     return !!localStorage.brain.token;
