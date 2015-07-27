@@ -39,7 +39,6 @@ export default class Login extends React.Component {
     AuthActions.register(this.state.login);
   }
   login() {
-    console.log('test');
     AuthActions.login(this.state.login);
   }
   render() {

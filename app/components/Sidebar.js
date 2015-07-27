@@ -19,7 +19,7 @@ export default class Sidebar extends React.Component {
                   <div className="side-content">
                       <ul className="nav-main">
                           <li>
-                              <a className="active" href="index.html"><i className="si si-speedometer"></i><span className="sidebar-mini-hide">Dashboard</span></a>
+                              <a className="active" href="index.html"><i className="si si-speedometer"></i><span className="sidebar-mini-hide">Dashboard {this.props.user.username}</span></a>
                           </li>
                           <li className="nav-main-heading"><span className="sidebar-mini-hide">User Interface</span></li>
                           <li>

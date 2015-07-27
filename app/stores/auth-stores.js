@@ -9,15 +9,14 @@ class AuthStore {
   constructor() {
     this.bindActions(AuthActions);
     this.user = null;
+    this.access_token = null;
     this.error = null;
   }
   saveUser(data) {
     if (data.ok) {
-      console.log('saveUser');
       this.storeUser(data.user);
       this.redirectToHome();
-    }
-    else {
+    } else {
       this.clearUser();
       this.error = data.error.message;
       this.redirectToLogin();
@@ -25,21 +24,18 @@ class AuthStore {
   }
   storeUser(user) {
     console.log("storeUser");
-    this.user = user;
+    this.user = user.user;
+    this.access_token = user.access_token;
     this.error = null;
     localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user));
   }
   loadLocalUser() {
-    if (!process.env.BROWSER) {
-      return;
-    }
     var user;
     try {
       user = JSON.parse(localStorage.getItem(USER_STORAGE_KEY));
     } finally {
       if (user) {
         console.log('loadLocalUser');
-        console.log(user);
         this.storeUser(user);
       }
     }
