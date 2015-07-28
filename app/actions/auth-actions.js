@@ -25,12 +25,6 @@ class AuthActions {
       this.dispatch({ok: false, error: err.data});
     }
   }
-  getToken() {
-    return localStorage.brain.token;
-  }
-  loggedIn() {
-    return !!localStorage.brain.token;
-  }
 }
 
 module.exports = (alt.createActions(AuthActions));
