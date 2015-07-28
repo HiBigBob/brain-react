@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-export default class Sidebar extends React.Component {
+export default class Header extends React.Component {
   render() {
     return (
       <header id="header-navbar" className="content-mini content-mini-full">
