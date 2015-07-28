@@ -7,6 +7,7 @@ import AuthStore from '../stores/auth-stores';
 import AuthActions from '../actions/auth-actions';
 
 import Sidebar from './Sidebar';
+import Header from './Header';
 
 @authDecorator
 @connectToStores
@@ -23,6 +24,7 @@ export default class Main extends React.Component {
     return (
       <div id="page-container" className="sidebar-l sidebar-o side-scroll header-navbar-fixed">
         <Sidebar user={this.props.user} />
+        <Header user={this.props.user} />
       </div>
     );
   }
