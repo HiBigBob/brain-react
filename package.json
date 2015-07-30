@@ -26,10 +26,15 @@
     "alt": "^0.17.1",
     "axios": "^0.5.4",
     "babel": "^5.8.5",
+    "flux": "^2.0.3",
+    "jwt-decode": "^1.4.0",
     "lodash": "^3.10.0",
     "react": "^0.13.3",
     "react-bootstrap": "^0.24.0",
     "react-mixin": "^1.6.0",
-    "react-router": "^0.13.3"
+    "react-router": "^0.13.3",
+    "reqwest": "^2.0.1",
+    "when": "^3.7.3",
+    "xhr2": "^0.1.2"
   }
 }
