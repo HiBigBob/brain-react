@@ -38,10 +38,7 @@ export default AuthenticatedComponent(class List extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>{this.state.list}</h1>
-        <button className="btn btn-primary" type="button" onClick={this.getList}>Get List</button>
-      </div>
+      <li className="nav-main-heading"><span className="sidebar-mini-hide">List</span></li>
     );
   }
 });

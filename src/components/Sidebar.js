@@ -2,6 +2,8 @@
 
 import React from 'react';
 
+import List from './List';
+
 export default class Sidebar extends React.Component {
   render() {
     return (
@@ -21,7 +23,7 @@ export default class Sidebar extends React.Component {
                           <li>
                               <a className="active" href="index.html"><i className="si si-speedometer"></i><span className="sidebar-mini-hide">Dashboard {this.props.user.username}</span></a>
                           </li>
-
+                          <List />
                       </ul>
                   </div>
               </div>
