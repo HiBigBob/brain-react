@@ -11,7 +11,7 @@ export default {
 
       RouterContainer.get().transitionTo(nextPath);
       localStorage.setItem('jwt', auth.access_token.token);
-      localStorage.setItem('brain', auth);
+      localStorage.setItem('brain', JSON.stringify(auth));
     }
 
     AppDispatcher.dispatch({

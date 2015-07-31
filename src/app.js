@@ -21,7 +21,7 @@ var routes = (
 var router = Router.create({routes});
 RouterContainer.set(router);
 
-let brain = localStorage.getItem('brain');
+let brain = JSON.parse(localStorage.getItem('brain'));
 if (brain) {
   LoginActions.loginUser(brain);
 }
