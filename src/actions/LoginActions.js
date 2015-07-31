@@ -3,19 +3,19 @@ import {LOGIN_USER, LOGOUT_USER} from '../constants/LoginConstants';
 import RouterContainer from '../services/RouterContainer'
 
 export default {
-  loginUser: (jwt) => {
+  loginUser: (auth) => {
     var savedJwt = localStorage.getItem('jwt');
 
-    if (savedJwt !== jwt) {
+    if (savedJwt !== auth.access_token.token) {
       var nextPath = RouterContainer.get().getCurrentQuery().nextPath || '/';
 
       RouterContainer.get().transitionTo(nextPath);
-      localStorage.setItem('jwt', jwt);
+      localStorage.setItem('jwt', auth.access_token.token);
     }
 
     AppDispatcher.dispatch({
       actionType: LOGIN_USER,
-      jwt: jwt
+      auth: auth
     });
   },
   logoutUser: () => {

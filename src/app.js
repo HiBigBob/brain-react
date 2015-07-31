@@ -1,15 +1,16 @@
 import React from 'react';
 import Router, {Route} from 'react-router';
-import AuthenticatedApp from './components/AuthenticatedApp'
+import App from './components/App'
 import Login from './components/Login';
 import Signup from './components/Signup';
 import Home from './components/Home';
 import List from './components/List';
 import RouterContainer from './services/RouterContainer';
 import LoginActions from './actions/LoginActions';
+import './style.css';
 
 var routes = (
-  <Route handler={AuthenticatedApp}>
+  <Route handler={App}>
     <Route name="login" handler={Login}/>
     <Route name="signup" handler={Signup}/>
     <Route name="home" path="/" handler={Home}/>

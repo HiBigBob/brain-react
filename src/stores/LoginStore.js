@@ -1,10 +1,7 @@
 import {LOGIN_USER, LOGOUT_USER} from '../constants/LoginConstants';
 import BaseStore from './BaseStore';
-import jwt_decode from 'jwt-decode';
-
 
 class LoginStore extends BaseStore {
-
   constructor() {
     super();
     this.subscribe(() => this._registerToActions.bind(this))
@@ -15,8 +12,8 @@ class LoginStore extends BaseStore {
   _registerToActions(action) {
     switch(action.actionType) {
       case LOGIN_USER:
-        this._jwt = action.jwt;
-        this._user = jwt_decode(this._jwt);
+        this._jwt = action.auth.access_token.token;
+        this._user = action.auth.user;
         this.emitChange();
         break;
       case LOGOUT_USER:
