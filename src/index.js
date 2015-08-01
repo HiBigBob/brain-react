@@ -1,2 +1,3 @@
 require("babel/polyfill");
-require("./app.js")
+require("./app.js");
+require("font-awesome-webpack");

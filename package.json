@@ -16,9 +16,12 @@
     "css-loader": "^0.15.5",
     "extract-text-webpack-plugin": "^0.8.2",
     "file-loader": "^0.8.4",
+    "font-awesome": "^4.4.0",
+    "font-awesome-webpack": "0.0.3",
     "node-libs-browser": "^0.5.2",
     "react-hot-loader": "^1.2.8",
     "style-loader": "^0.12.3",
+    "url-loader": "^0.5.6",
     "webpack": "^1.10.1",
     "webpack-dev-server": "^1.10.1"
   },
