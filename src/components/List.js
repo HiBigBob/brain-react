@@ -1,7 +1,5 @@
 import React from 'react';
 import AuthenticatedComponent from './AuthenticatedComponent';
-import ListStore from '../stores/ListStore.js';
-import ListService from '../services/ListService.js';
 
 var OneList = React.createClass({
   render() {
@@ -14,40 +12,8 @@ var OneList = React.createClass({
 });
 
 export default AuthenticatedComponent(class List extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = this.getListState();
-    this._onChange = this._onChange.bind(this);
-  }
-
-  componentDidMount() {
-    if (!this.state.list) {
-      this.getList();
-    }
-
-    ListStore.addChangeListener(this._onChange);
-  }
-
-  componentWillUnmount() {
-    ListStore.removeChangeListener(this._onChange);
-  }
-
-  _onChange() {
-    this.setState(this.getListState());
-  }
-
-  getList() {
-    ListService.getList();
-  }
-
-  getListState() {
-    return {
-      list: ListStore.list
-    };
-  }
-
   render() {
-    var lists = this.state.list;
+    var lists = this.props.list;
     return (<ul className="nav-main">
       <li>
           <a className="active" href="index.html"><i className="si si-speedometer"></i><span className="sidebar-mini-hide">Dashboard {this.props.user.username}</span></a>

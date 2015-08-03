@@ -9,60 +9,17 @@ var OneTask = React.createClass({
       <tr>
           <td className="text-center">
               <label className="css-input css-checkbox css-checkbox-primary">
-                  <input type="checkbox"><span></span>
+                  <input type="checkbox" /><span></span>
               </label>
           </td>
-          <td className="hidden-xs font-w600">Eugene Burke</td>
-          <td>
-              <a className="font-w600" data-toggle="modal" data-target="#modal-message" href="#">Your subscription was updated</a>
-              <div className="text-muted push-5-t">We are glad you decided to go with a vip..</div>
-          </td>
-          <td className="visible-lg text-muted">
-              <i className="fa fa-paperclip"></i> (2)
-          </td>
-          <td className="visible-lg text-muted">
-              <em>10 min ago</em>
-          </td>
+          <td className="hidden-xs font-w600">{this.props.task.name}</td>
       </tr>
     );
   }
 });
 
 export default AuthenticatedComponent(class Task extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = this.getTaskState();
-    this._onChange = this._onChange.bind(this);
-  }
-
-  componentDidMount() {
-    if (!this.state.task) {
-      this.getTask();
-    }
-
-    TaskStore.addChangeListener(this._onChange);
-  }
-
-  componentWillUnmount() {
-    TaskStore.removeChangeListener(this._onChange);
-  }
-
-  _onChange() {
-    this.setState(this.getTaskState());
-  }
-
-  getList() {
-    TaskService.getTask();
-  }
-
-  getTaskState() {
-    return {
-      list: ListStore.list
-    };
-  }
-
   render() {
-    var tasks = this.state.task;
     return (
       <main id="main-container">
           <div className="content">
@@ -98,16 +55,14 @@ export default AuthenticatedComponent(class Task extends React.Component {
                               </div>
                               <div className="pull-r-l">
                                   <table className="js-table-checkable table table-hover table-vcenter">
-                                      <tbody>
                                         {
-                                          Object.keys(tasks).map(function (key) {
-                                            var task = tasks[key];
+                                          Object.keys(this.props.task[0].tasks).map(function (key) {
+                                            var task = this.props.task[0].tasks[key];
                                             return (
                                               <OneTask task={task} />
                                             );
                                           })
                                         }
-                                      </tbody>
                                   </table>
                               </div>
                           </div>
