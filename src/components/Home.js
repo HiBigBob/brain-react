@@ -34,11 +34,19 @@ export default AuthenticatedComponent(class Home extends React.Component {
 
   getListState() {
     return {
-      list: ListStore.list
+      list: ListStore.list,
+      selectingList: null
     };
   }
 
+  select(list) {
+    console.log("select");
+    console.log(list.id);
+    this.setState({selectingList: list.id});
+  }
+
   render() {
+    var lists = this.state.list;
     return (
       <div id="page-container" className="sidebar-l sidebar-o side-scroll header-navbar-fixed">
         <nav id="sidebar">
@@ -53,14 +61,24 @@ export default AuthenticatedComponent(class Home extends React.Component {
                         </a>
                     </div>
                     <div className="side-content">
-                        <List user={this.props.user} list={this.state.list}/>
+                      <ul className="nav-main">
+                        <li>
+                            <a className="active" href="index.html"><i className="si si-speedometer"></i><span className="sidebar-mini-hide">Dashboard {this.props.user.username}</span></a>
+                        </li>
+                        <li className="nav-main-heading"><span className="sidebar-mini-hide">List</span></li>
+                        {
+                          Object.keys(lists).map(function (key) {
+                            var list = lists[key];
+                            return (
+                              <List list={list} onClick={this.select.bind(this, list)} />
+                            );
+                          })
+                        }
+                        </ul>
                     </div>
                 </div>
             </div>
         </nav>
-        if (this.state.list) {
-            <Task task={this.state.list}/>
-        }
       </div>
     );
   }
