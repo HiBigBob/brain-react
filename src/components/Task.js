@@ -56,12 +56,12 @@ export default AuthenticatedComponent(class Task extends React.Component {
                               <div className="pull-r-l">
                                   <table className="js-table-checkable table table-hover table-vcenter">
                                         {
-                                          Object.keys(this.props.task[0].tasks).map(function (key) {
-                                            var task = this.props.task[0].tasks[key];
+                                          Object.keys(this.props.task).map(function (key) {
+                                            var task = this.props.task[key];
                                             return (
                                               <OneTask task={task} />
                                             );
-                                          })
+                                          }, this)
                                         }
                                   </table>
                               </div>

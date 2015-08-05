@@ -40,13 +40,19 @@ export default AuthenticatedComponent(class Home extends React.Component {
   }
 
   select(list) {
-    console.log("select");
-    console.log(list.id);
-    this.setState({selectingList: list.id});
+    this.setState({selectingList: list});
   }
 
   render() {
     var lists = this.state.list;
+    var task;
+
+    if (this.state.selectingList) {
+			task = (
+				<Task task={this.state.selectingList.tasks}/>
+			);
+		}
+
     return (
       <div id="page-container" className="sidebar-l sidebar-o side-scroll header-navbar-fixed">
         <nav id="sidebar">
@@ -72,13 +78,14 @@ export default AuthenticatedComponent(class Home extends React.Component {
                             return (
                               <List list={list} onClick={this.select.bind(this, list)} />
                             );
-                          })
+                          }, this)
                         }
                         </ul>
                     </div>
                 </div>
             </div>
         </nav>
+        {task}
       </div>
     );
   }
