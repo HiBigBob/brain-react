@@ -6,14 +6,17 @@ import TaskService from '../services/TaskService.js';
 var OneTask = React.createClass({
   render() {
     return (
-      <tr>
-          <td className="text-center">
-              <label className="css-input css-checkbox css-checkbox-primary">
-                  <input type="checkbox" /><span></span>
-              </label>
-          </td>
-          <td className="hidden-xs font-w600">{this.props.task.name}</td>
-      </tr>
+      <li>
+          <div className="list-timeline-time">
+          12 hrs ago
+          </div>
+          <i className="fa fa-shopping-cart list-timeline-icon bg-success">
+          </i>
+          <div className="list-timeline-content">
+              <p className="font-w600">{this.props.task.name}</p>
+              <p className="font-s13">{this.props.task.name}</p>
+          </div>
+      </li>
     );
   }
 });
@@ -48,23 +51,22 @@ export default AuthenticatedComponent(class Task extends React.Component {
                           </div>
                           <div className="block-content">
                               <div className="push">
-                                  <button className="btn btn-default pull-right" type="button"><i className="fa fa-times text-danger push-5-l push-5-r"></i> <span className="hidden-xs">Delete</span></button>
                                   <div className="btn-group">
-                                      <button className="btn btn-default" type="button"><i className="fa fa-archive text-primary push-5-l push-5-r"></i> <span className="hidden-xs">Archive</span></button>
-                                      <button className="btn btn-default" type="button"><i className="fa fa-star text-warning push-5-l push-5-r"></i> <span className="hidden-xs">Star</span></button>
+                                      <button className="btn btn-default btn-xs" type="button"><i className="fa fa-square-o text-primary push-5-l push-5-r"></i> <span className="hidden-xs">Active</span></button>
+                                      <button className="btn btn-default btn-xs" type="button"><i className="fa fa-check-square-o text-primary push-5-l push-5-r"></i> <span className="hidden-xs">Completed</span></button>
                                   </div>
                               </div>
                               <div className="pull-r-l">
-                                  <table className="js-table-checkable table table-hover table-vcenter">
-                                        {
-                                          Object.keys(this.props.task).map(function (key) {
-                                            var task = this.props.task[key];
-                                            return (
-                                              <OneTask task={task} />
-                                            );
-                                          }, this)
-                                        }
-                                  </table>
+                                  <ul className="list list-timeline pull-t">
+                                  {
+                                    Object.keys(this.props.task).map(function (key) {
+                                      var task = this.props.task[key];
+                                      return (
+                                        <OneTask task={task} />
+                                      );
+                                    }, this)
+                                  }
+                                  </ul>
                               </div>
                           </div>
                       </div>
