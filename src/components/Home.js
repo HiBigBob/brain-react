@@ -44,7 +44,6 @@ export default AuthenticatedComponent(class Home extends React.Component {
   }
 
   render() {
-    var lists = this.state.list;
     var task;
 
     if (this.state.selectingList) {
@@ -73,8 +72,8 @@ export default AuthenticatedComponent(class Home extends React.Component {
                         </li>
                         <li className="nav-main-heading"><span className="sidebar-mini-hide">List</span></li>
                         {
-                          Object.keys(lists).map(function (key) {
-                            var list = lists[key];
+                          Object.keys(this.state.list).map(function (key) {
+                            var list = this.state.list[key];
                             return (
                               <List list={list} onClick={this.select.bind(this, list)} />
                             );
