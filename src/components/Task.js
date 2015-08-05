@@ -20,6 +20,7 @@ var OneTask = React.createClass({
 
 export default AuthenticatedComponent(class Task extends React.Component {
   render() {
+    var nbTask = this.props.task.length;
     return (
       <main id="main-container">
           <div className="content">
@@ -42,7 +43,7 @@ export default AuthenticatedComponent(class Task extends React.Component {
                                   </li>
                               </ul>
                               <div className="block-title text-normal">
-                                  <strong>15-30</strong> <span className="font-w400">from</span> <strong>700</strong>
+                                  <strong>{nbTask}</strong> <span className="font-w400">tasks</span>
                               </div>
                           </div>
                           <div className="block-content">
