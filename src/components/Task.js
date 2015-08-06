@@ -8,11 +8,14 @@ var OneTask = React.createClass({
     return (
       <li>
           <div className="list-timeline-time">
-          12 hrs ago
+            12 hrs ago
           </div>
-          <i className="fa fa-shopping-cart list-timeline-icon bg-success">
+          <i className="fa fa-shopping-cart fa-fw list-timeline-icon bg-success">
           </i>
           <div className="list-timeline-content">
+              <label className="css-input css-checkbox css-checkbox-primary pull-right push-100-r">
+                <input type="checkbox" /><span></span>
+              </label>
               <p className="font-w600">{this.props.task.name}</p>
               <p className="font-s13">{this.props.task.name}</p>
           </div>
