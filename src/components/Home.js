@@ -4,6 +4,7 @@ import ListStore from '../stores/ListStore.js';
 import ListService from '../services/ListService.js';
 import List from './List';
 import Task from './Task';
+import Header from './Header';
 
 export default AuthenticatedComponent(class Home extends React.Component {
   constructor(props) {
@@ -35,12 +36,17 @@ export default AuthenticatedComponent(class Home extends React.Component {
   getListState() {
     return {
       list: ListStore.list,
-      selectingList: null
+      selectingList: null,
+      showSideBar: true
     };
   }
 
   select(list) {
     this.setState({selectingList: list});
+  }
+
+  toggleSideBar(value) {
+    this.setState({showSideBar: value});
   }
 
   render() {
@@ -52,8 +58,13 @@ export default AuthenticatedComponent(class Home extends React.Component {
 			);
 		}
 
+    var classSideBar = 'sidebar-l sidebar-o side-scroll header-navbar-fixed';
+    if (!this.state.showSideBar) {
+      classSideBar += ' sidebar-mini';
+    }
+
     return (
-      <div id="page-container" className="sidebar-l sidebar-o side-scroll header-navbar-fixed">
+      <div id="page-container" className={classSideBar}>
         <nav id="sidebar">
             <div id="sidebar-scroll">
                 <div className="sidebar-content">
@@ -84,6 +95,7 @@ export default AuthenticatedComponent(class Home extends React.Component {
                 </div>
             </div>
         </nav>
+        <Header onClick={this.toggleSideBar.bind(this, !this.state.showSideBar)} />
         {task}
       </div>
     );
