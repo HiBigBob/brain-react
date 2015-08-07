@@ -17,7 +17,7 @@ var OneTask = React.createClass({
                 <input type="checkbox" /><span></span>
               </label>
               <p className="font-w600">{this.props.task.name}</p>
-              <p className="font-s13">{this.props.task.name}</p>
+              <p className="font-s13">{this.props.task.description}</p>
           </div>
       </li>
     );

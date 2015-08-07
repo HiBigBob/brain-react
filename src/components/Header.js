@@ -18,6 +18,7 @@ export default AuthenticatedComponent(class Header extends React.Component {
     if (this.state.showProfile) {
       classProfile += ' open';
     }
+
     return (
       <header id="header-navbar" className="content-mini content-mini-full">
           <ul className="nav-header pull-right">
@@ -47,7 +48,6 @@ export default AuthenticatedComponent(class Header extends React.Component {
                               </a>
                           </li>
                           <li className="divider"></li>
-                          <li className="dropdown-header">Actions</li>
                           <li>
                               <a href="" onClick={this.props.onLogOut}>
                                 <i className="si si-logout pull-right"></i>Log out
