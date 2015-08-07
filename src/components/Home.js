@@ -95,7 +95,10 @@ export default AuthenticatedComponent(class Home extends React.Component {
                 </div>
             </div>
         </nav>
-        <Header onClick={this.toggleSideBar.bind(this, !this.state.showSideBar)} />
+        <Header
+          user={this.state.user}
+          onClickSideBar={this.toggleSideBar.bind(this, !this.state.showSideBar)}
+        />
         {task}
       </div>
     );

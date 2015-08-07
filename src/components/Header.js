@@ -2,28 +2,43 @@ import React from 'react';
 import AuthenticatedComponent from './AuthenticatedComponent';
 
 export default AuthenticatedComponent(class Header extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showProfile: false
+    };
+  }
+
+  toggleProfile(value) {
+    this.setState({showProfile: value});
+  }
+
   render() {
+    var classProfile = 'btn-group';
+    if (this.state.showProfile) {
+      classProfile += ' open';
+    }
     return (
       <header id="header-navbar" className="content-mini content-mini-full">
           <ul className="nav-header pull-right">
               <li>
-                  <div className="btn-group">
-                      <button className="btn btn-default btn-image dropdown-toggle" data-toggle="dropdown" type="button">
-                          <img src="assets/img/avatars/avatar10.jpg" alt="Avatar" />
+                  <div className={classProfile}>
+                      <button className="btn btn-default dropdown-toggle" type="button" onClick={this.toggleProfile.bind(this, !this.state.showProfile)}>
+                          <i className="fa fa-user pull-left text-primary"></i>
                           <span className="caret"></span>
                       </button>
                       <ul className="dropdown-menu dropdown-menu-right">
-                          <li className="dropdown-header">Profile</li>
+                          <li className="dropdown-header">Profile {this.props.user.username}</li>
                           <li>
                               <a tabindex="-1" href="base_pages_inbox.html">
                                   <i className="si si-envelope-open pull-right"></i>
-                                  <span className="badge badge-primary pull-right">3</span>Inbox
+                                  <span className="badge badge-primary pull-right">0</span>Inbox
                               </a>
                           </li>
                           <li>
                               <a tabindex="-1" href="base_pages_profile.html">
                                   <i className="si si-user pull-right"></i>
-                                  <span className="badge badge-success pull-right">1</span>Profile
+                                  Profile
                               </a>
                           </li>
                           <li>
@@ -33,11 +48,6 @@ export default AuthenticatedComponent(class Header extends React.Component {
                           </li>
                           <li className="divider"></li>
                           <li className="dropdown-header">Actions</li>
-                          <li>
-                              <a tabindex="-1" href="base_pages_lock.html">
-                                  <i className="si si-lock pull-right"></i>Lock Account
-                              </a>
-                          </li>
                           <li>
                               <a tabindex="-1" href="base_pages_login.html">
                                   <i className="si si-logout pull-right"></i>Log out
@@ -49,7 +59,7 @@ export default AuthenticatedComponent(class Header extends React.Component {
           </ul>
           <ul className="nav-header pull-left">
               <li className="hidden-xs hidden-sm">
-                  <button className="btn btn-default" type="button" onClick={this.props.onClick}>
+                  <button className="btn btn-default" type="button" onClick={this.props.onClickSideBar}>
                       <i className="fa fa-ellipsis-v"></i>
                   </button>
               </li>
