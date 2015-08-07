@@ -22,6 +22,17 @@ export default class Login extends React.Component {
   }
 
   render() {
+    var classUser = 'form-material form-material-primary floating';
+    var classUsername = classUser;
+    var classPassword = classUser;
+    if (this.state.username) {
+      classUsername += ' open';
+    }
+
+    if (this.state.password) {
+      classPassword += ' open';
+    }
+
     return (
     <div className="content overflow-hidden">
         <div className="row">
@@ -33,7 +44,7 @@ export default class Login extends React.Component {
                         <div className="js-validation-login form-horizontal push-30-t push-50" >
                             <div className="form-group">
                                 <div className="col-xs-12">
-                                    <div className="form-material form-material-primary floating">
+                                    <div className={classUsername}>
                                         <input type="text" valueLink={this.linkState('username')} className="form-control" id="username"  />
                                         <label htmlFor="username">Username</label>
                                     </div>
@@ -41,7 +52,7 @@ export default class Login extends React.Component {
                             </div>
                             <div className="form-group">
                                 <div className="col-xs-12">
-                                    <div className="form-material form-material-primary floating">
+                                    <div className={classPassword}>
                                         <input type="password" valueLink={this.linkState('password')} className="form-control" id="password" ref="password"  />
                                         <label htmlFor="password">Password</label>
                                     </div>
