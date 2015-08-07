@@ -1,5 +1,6 @@
 import React from 'react';
 import LoginStore from '../stores/LoginStore';
+import AuthService from '../services/AuthService'
 
 export default (ComposedComponent) => {
   return class AuthenticatedComponent extends React.Component {
@@ -36,13 +37,19 @@ export default (ComposedComponent) => {
       LoginStore.removeChangeListener(this.changeListener);
     }
 
+    logout(e) {
+      e.preventDefault();
+      AuthService.logout();
+    }
+
     render() {
       return (
       <ComposedComponent
         {...this.props}
         user={this.state.user}
         jwt={this.state.jwt}
-        userLoggedIn={this.state.userLoggedIn} />
+        userLoggedIn={this.state.userLoggedIn}
+        onLogOut={this.logout} />
       );
     }
   }

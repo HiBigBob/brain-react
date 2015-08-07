@@ -49,8 +49,8 @@ export default AuthenticatedComponent(class Header extends React.Component {
                           <li className="divider"></li>
                           <li className="dropdown-header">Actions</li>
                           <li>
-                              <a tabindex="-1" href="base_pages_login.html">
-                                  <i className="si si-logout pull-right"></i>Log out
+                              <a href="" onClick={this.props.onLogOut}>
+                                <i className="si si-logout pull-right"></i>Log out
                               </a>
                           </li>
                       </ul>

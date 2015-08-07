@@ -22,6 +22,7 @@ export default {
   logoutUser: () => {
     RouterContainer.get().transitionTo('/login');
     localStorage.removeItem('jwt');
+    localStorage.removeItem('brain');
     AppDispatcher.dispatch({
       actionType: LOGOUT_USER
     });
