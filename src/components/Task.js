@@ -2,6 +2,7 @@ import React from 'react';
 import AuthenticatedComponent from './AuthenticatedComponent';
 import TaskStore from '../stores/TaskStore.js';
 import TaskService from '../services/TaskService.js';
+import MarkDown from './MarkDown';
 
 var OneTask = React.createClass({
   render() {
@@ -17,7 +18,9 @@ var OneTask = React.createClass({
                 <input type="checkbox" /><span></span>
               </label>
               <p className="font-w600">{this.props.task.name}</p>
-              <p className="font-s13">{this.props.task.description}</p>
+              <p className="font-s13">
+                <MarkDown text={this.props.task.description} />
+              </p>
           </div>
       </li>
     );
@@ -25,27 +28,54 @@ var OneTask = React.createClass({
 });
 
 export default AuthenticatedComponent(class Task extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showBlock: true
+    };
+  }
+
+  toggleBlock(value) {
+    this.setState({showBlock: value});
+  }
+
   render() {
+
+    var classBlock = 'block block-themed';
+    var classIconBlock = 'text-default-lighter fa-lg fa';
+    if (!this.state.showBlock) {
+      classBlock += ' block-opt-hidden';
+      classIconBlock += ' fa-caret-square-o-down';
+    } else {
+      classIconBlock += ' fa-caret-square-o-up';
+    }
+
     var nbTask = this.props.task.length;
     return (
       <main id="main-container">
+          <div className="content bg-gray-lighter">
+              <div className="row items-push">
+                  <div className="col-sm-7">
+                      <h1 className="page-heading">
+                          Task <small> lets go.</small>
+                      </h1>
+                  </div>
+                  <div className="col-sm-5 text-right hidden-xs">
+                      <ol className="breadcrumb push-10-t">
+                          <li>List</li>
+                          <li><a className="link-effect" href="">Task</a></li>
+                      </ol>
+                  </div>
+              </div>
+          </div>
           <div className="content">
               <div className="row">
                   <div className="col-sm-12 col-lg-12">
-                      <div className="block">
-                          <div className="block-header bg-gray-lighter">
+                      <div className={classBlock}>
+                          <div className="block-header bg-primary">
                               <ul className="block-options">
                                   <li>
-                                      <button className="js-tooltip" title="Previous 15 Messages" type="button" data-toggle="block-option"><i className="si si-arrow-left"></i></button>
-                                  </li>
-                                  <li>
-                                      <button className="js-tooltip" title="Next 15 Messages" type="button" data-toggle="block-option"><i className="si si-arrow-right"></i></button>
-                                  </li>
-                                  <li>
-                                      <button type="button" data-toggle="block-option" data-action="refresh_toggle" data-action-mode="demo"><i className="si si-refresh"></i></button>
-                                  </li>
-                                  <li>
-                                      <button type="button" data-toggle="block-option" data-action="fullscreen_toggle"></button>
+                                      <button type="button" onClick={this.toggleBlock.bind(this, !this.state.showBlock)}><i className={classIconBlock}></i></button>
                                   </li>
                               </ul>
                               <div className="block-title text-normal">

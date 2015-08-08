@@ -22,6 +22,7 @@ export default class Login extends React.Component {
   }
 
   render() {
+    console.log(this.state.username);
     var classUser = 'form-material form-material-primary floating';
     var classUsername = classUser;
     var classPassword = classUser;
