@@ -51,10 +51,11 @@ export default AuthenticatedComponent(class Home extends React.Component {
 
   render() {
     var task;
-
     if (this.state.selectingList) {
 			task = (
-				<Task task={this.state.selectingList.tasks}/>
+				<Task
+        task={this.state.selectingList.tasks}
+        />
 			);
 		}
 
@@ -64,6 +65,7 @@ export default AuthenticatedComponent(class Home extends React.Component {
     }
 
     return (
+    <div>
       <div id="page-container" className={classSideBar}>
         <nav id="sidebar">
             <div id="sidebar-scroll">
@@ -101,6 +103,7 @@ export default AuthenticatedComponent(class Home extends React.Component {
         />
         {task}
       </div>
+    </div>
     );
   }
 });

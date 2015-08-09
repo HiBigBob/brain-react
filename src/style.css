@@ -9837,6 +9837,12 @@ a.block.block-link-hover3:active {
 .push-150-l {
   margin-left: 150px !important;
 }
+.push-400-r {
+  margin-right: 400px !important;
+}
+.push-400-l {
+  margin-left: 400px !important;
+}
 .pulldown {
   position: relative;
   top: 50px;
@@ -13791,4 +13797,24 @@ div.tagsinput span.tag a:hover {
 }
 .placeholder {
   color: #aaa;
+}
+
+.form-brain-title {
+  width:50%;
+  height: 21px;
+  margin-top: -10px;
+}
+
+.form-brain-description {
+  width:50%;
+  height: 21px;
+  margin-top: -10px;
+}
+
+.display-none {
+  display: none;
+}
+
+.display-block {
+  display: block;
 }

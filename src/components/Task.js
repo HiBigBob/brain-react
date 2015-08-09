@@ -4,6 +4,7 @@ import TaskStore from '../stores/TaskStore.js';
 import TaskService from '../services/TaskService.js';
 import MarkDown from './MarkDown';
 
+
 var OneTask = React.createClass({
   render() {
     return (
@@ -31,7 +32,10 @@ export default AuthenticatedComponent(class Task extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showBlock: true
+      showBlock: true,
+      name: '',
+      description: '',
+      showAdd: false
     };
   }
 
@@ -39,8 +43,26 @@ export default AuthenticatedComponent(class Task extends React.Component {
     this.setState({showBlock: value});
   }
 
-  render() {
+  toggleAdd(value) {
+    this.setState({showAdd: value});
+  }
 
+  handleTitleChange(event) {
+    this.setState({name: event.target.value});
+    console.log(this.state.name);
+  }
+
+  handleDescriptionChange(event) {
+    this.setState({description: event.target.value});
+  }
+
+  addTask(event) {
+    console.log("add");
+    console.log(this.state.name);
+    console.log(this.state.description);
+  }
+
+  render() {
     var classBlock = 'block block-themed';
     var classIconBlock = 'text-default-lighter fa-lg fa';
     if (!this.state.showBlock) {
@@ -50,7 +72,15 @@ export default AuthenticatedComponent(class Task extends React.Component {
       classIconBlock += ' fa-caret-square-o-up';
     }
 
+    var classAdd = 'display-none';
+    var classAddLink = 'display-block';
+    if (this.state.showAdd) {
+      classAdd = 'display-block';
+      classAddLink = 'display-none';
+    }
+
     var nbTask = this.props.task.length;
+
     return (
       <main id="main-container">
           <div className="content bg-gray-lighter">
@@ -99,6 +129,44 @@ export default AuthenticatedComponent(class Task extends React.Component {
                                       );
                                     }, this)
                                   }
+                                  <li className={classAdd}>
+                                      <div className="list-timeline-time">
+                                      </div>
+                                      <i className="fa fa-plus fa-fw list-timeline-icon bg-primary">
+                                      </i>
+                                      <div className="list-timeline-content">
+                                          <p className="font-w600 form-material">
+                                          <input className="form-control form-brain-title" onChange={this.handleTitleChange} type="text" placeholder="Title " />
+                                          </p>
+                                          <p className="font-s13 form-material">
+                                          <textarea rows="2" className="form-control form-brain-description" onChange={this.handleDescriptionChange} type="text" placeholder="Title " />
+                                          </p>
+                                          <div className="push-400-l">
+                                            <button type="button" className="btn btn-primary btn-xs" onClick={this.addTask}>
+                                              Add
+                                            </button>
+                                            <button type="button" className="btn btn-default btn-xs" onClick={this.toggleAdd.bind(this, !this.state.showAdd)}>
+                                              Cancel
+                                            </button>
+                                          </div>
+                                      </div>
+                                  </li>
+                                  <li className={classAddLink}>
+                                    <div className="list-timeline-time">
+                                    </div>
+                                    <i className="fa fa-plus fa-fw list-timeline-icon bg-default">
+                                    </i>
+                                    <div className="list-timeline-content">
+                                        <label className="css-input css-checkbox css-checkbox-primary pull-right push-100-r">
+                                          <input type="checkbox" /><span></span>
+                                        </label>
+                                        <p className="font-w600 ">
+                                          <button type="button" className="btn btn-default btn-xs" onClick={this.toggleAdd.bind(this, !this.state.showAdd)}>
+                                            Add task
+                                          </button>
+                                        </p>
+                                    </div>
+                                  </li>
                                   </ul>
                               </div>
                           </div>
