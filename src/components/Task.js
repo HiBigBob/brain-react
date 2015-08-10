@@ -49,7 +49,6 @@ export default AuthenticatedComponent(class Task extends React.Component {
 
   handleTitleChange(event) {
     this.setState({name: event.target.value});
-    console.log(this.state.name);
   }
 
   handleDescriptionChange(event) {
@@ -59,7 +58,6 @@ export default AuthenticatedComponent(class Task extends React.Component {
   addTask(event) {
     console.log("add");
     console.log(this.state.name);
-    console.log(this.state.description);
   }
 
   render() {
