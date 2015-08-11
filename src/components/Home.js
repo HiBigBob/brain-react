@@ -55,6 +55,7 @@ export default AuthenticatedComponent(class Home extends React.Component {
 			task = (
 				<Task
         task={this.state.selectingList.tasks}
+        listId={this.state.selectingList._id}
         />
 			);
 		}
