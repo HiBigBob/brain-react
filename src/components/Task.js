@@ -55,9 +55,13 @@ export default AuthenticatedComponent(class Task extends React.Component {
     this.setState({description: event.target.value});
   }
 
-  addTask(event) {
-    console.log("add");
-    console.log(this.state.name);
+  addTask(e) {
+    e.preventDefault();
+    TaskService.addTask(this.props.listId, this.state.name, this.state.description)
+    .catch(function(err) {
+      alert("There's an error adding task");
+      console.log("Error adding task", err);
+    });
   }
 
   render() {
@@ -134,13 +138,13 @@ export default AuthenticatedComponent(class Task extends React.Component {
                                       </i>
                                       <div className="list-timeline-content">
                                           <p className="font-w600 form-material">
-                                          <input className="form-control form-brain-title" onChange={this.handleTitleChange} type="text" placeholder="Title " />
+                                          <input className="form-control form-brain-title" onChange={this.handleTitleChange.bind(this)} type="text" placeholder="Title " />
                                           </p>
                                           <p className="font-s13 form-material">
-                                          <textarea rows="2" className="form-control form-brain-description" onChange={this.handleDescriptionChange} type="text" placeholder="Title " />
+                                          <textarea rows="2" className="form-control form-brain-description" onChange={this.handleDescriptionChange.bind(this)} type="text" placeholder="Title " />
                                           </p>
                                           <div className="push-400-l">
-                                            <button type="button" className="btn btn-primary btn-xs" onClick={this.addTask}>
+                                            <button type="button" className="btn btn-primary btn-xs" onClick={this.addTask.bind(this)}>
                                               Add
                                             </button>
                                             <button type="button" className="btn btn-default btn-xs" onClick={this.toggleAdd.bind(this, !this.state.showAdd)}>

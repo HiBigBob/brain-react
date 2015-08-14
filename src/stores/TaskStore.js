@@ -1,5 +1,4 @@
-import {TASK_GET} from '../constants/TaskConstants';
-import {LOGOUT_USER} from '../constants/LoginConstants';
+import {TASK_GET, TASK_ADD} from '../constants/TaskConstants';
 import BaseStore from './BaseStore';
 
 class TaskStore extends BaseStore {
@@ -7,22 +6,26 @@ class TaskStore extends BaseStore {
   constructor() {
     super();
     this.subscribe(() => this._registerToActions.bind(this))
-    this._list = '';
+    this._task = '';
   }
 
   _registerToActions(action) {
     switch(action.actionType) {
       case TASK_GET:
-        this._list = action.list;
+        this._task = action.task;
         this.emitChange();
         break;
+      case TASK_ADD:
+          this._task = action.task;
+          this.emitChange();
+          break;
       default:
         break;
     };
   }
 
-  get list() {
-    return this._list;
+  get task() {
+    return this._task;
   }
 }
 
