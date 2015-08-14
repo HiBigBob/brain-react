@@ -1,23 +1,23 @@
-import {LIST_GET} from '../constants/ListConstants';
+import {CATEGORY_GET} from '../constants/CategoryConstants';
 import {LOGOUT_USER} from '../constants/LoginConstants';
 import BaseStore from './BaseStore';
 
-class ListStore extends BaseStore {
+class CategoryStore extends BaseStore {
 
   constructor() {
     super();
     this.subscribe(() => this._registerToActions.bind(this))
-    this._list = '';
+    this._category = '';
   }
 
   _registerToActions(action) {
     switch(action.actionType) {
-      case LIST_GET:
-        this._list = action.list;
+      case CATEGORY_GET:
+        this._category = action.category;
         this.emitChange();
         break;
       case LOGOUT_USER:
-        this._list = null;
+        this._category = null;
         this.emitChange();
         break;
       default:
@@ -25,9 +25,9 @@ class ListStore extends BaseStore {
     };
   }
 
-  get list() {
-    return this._list;
+  get category() {
+    return this._category;
   }
 }
 
-export default new ListStore();
+export default new CategoryStore();

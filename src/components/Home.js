@@ -1,48 +1,60 @@
 import React from 'react';
 import AuthenticatedComponent from './AuthenticatedComponent';
-import ListStore from '../stores/ListStore.js';
-import ListService from '../services/ListService.js';
-import List from './List';
+import CategoryStore from '../stores/CategoryStore.js';
+import CategoryService from '../services/CategoryService.js';
+import TaskStore from '../stores/TaskStore.js';
+import TaskService from '../services/TaskService.js';
+import Category from './Category';
 import Task from './Task';
 import Header from './Header';
 
 export default AuthenticatedComponent(class Home extends React.Component {
   constructor(props) {
     super(props);
-    this.state = this.getListState();
+    this.state = this.getState();
     this._onChange = this._onChange.bind(this);
   }
 
   componentDidMount() {
-    if (!this.state.list) {
-      this.getList();
+    if (!this.state.category) {
+      this.getCategory();
+    }
+    if (!this.state.task) {
+      this.getTask();
     }
 
-    ListStore.addChangeListener(this._onChange);
+    CategoryStore.addChangeListener(this._onChange);
+    TaskStore.addChangeListener(this._onChange);
   }
 
   componentWillUnmount() {
-    ListStore.removeChangeListener(this._onChange);
+    CategoryStore.removeChangeListener(this._onChange);
+    TaskStore.removeChangeListener(this._onChange);
   }
 
   _onChange() {
-    this.setState(this.getListState());
+    this.setState(this.getState());
   }
 
-  getList() {
-    ListService.getList();
+  getCategory() {
+    CategoryService.getCategory();
   }
 
-  getListState() {
+  getTask() {
+    TaskService.getTask();
+  }
+
+  getState() {
     return {
-      list: ListStore.list,
-      selectingList: null,
+      category: CategoryStore.category,
+      task: TaskStore.task,
+      selectingCategory: null,
       showSideBar: true
     };
   }
 
-  select(list) {
-    this.setState({selectingList: list});
+  select(category) {
+    this.setState({selectingCategory: category});
   }
 
   toggleSideBar(value) {
@@ -51,11 +63,16 @@ export default AuthenticatedComponent(class Home extends React.Component {
 
   render() {
     var task;
-    if (this.state.selectingList) {
+    var categoryId;
+    if (this.state.selectingCategory) {
+      categoryId = this.state.selectingCategory._id;
+    }
+
+    if (this.state.task) {
 			task = (
 				<Task
-        task={this.state.selectingList.tasks}
-        listId={this.state.selectingList._id}
+        task={this.state.task}
+        categoryId={categoryId}
         />
 			);
 		}
@@ -84,12 +101,15 @@ export default AuthenticatedComponent(class Home extends React.Component {
                         <li>
                             <a className="active" href="index.html"><i className="si si-speedometer"></i><span className="sidebar-mini-hide">Dashboard {this.props.user.username}</span></a>
                         </li>
-                        <li className="nav-main-heading"><span className="sidebar-mini-hide">List</span></li>
+                        <li className="nav-main-heading"><span className="sidebar-mini-hide">Category</span></li>
+                        <li onClick={this.select.bind(this, null)}>
+                          <a href="#">All</a>
+                        </li>
                         {
-                          Object.keys(this.state.list).map(function (key) {
-                            var list = this.state.list[key];
+                          Object.keys(this.state.category).map(function (key) {
+                            var category = this.state.category[key];
                             return (
-                              <List list={list} onClick={this.select.bind(this, list)} />
+                              <Category category={category} onClick={this.select.bind(this, category)} />
                             );
                           }, this)
                         }

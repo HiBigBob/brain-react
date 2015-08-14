@@ -3,7 +3,7 @@ import when from 'when';
 import {TASK_URL} from '../constants/TaskConstants';
 import TaskActions from '../actions/TaskActions';
 import LoginStore from '../stores/LoginStore.js';
-import ListService from '../services/ListService.js';
+import CategoryService from '../services/CategoryService.js';
 
 class TaskService {
 
@@ -29,7 +29,7 @@ class TaskService {
         'x-access-token': LoginStore.jwt
       },
       data: {
-        listId, name, description
+        categoryId, name, description
       }
     })));
   }
@@ -38,7 +38,7 @@ class TaskService {
     return taskPromise
       .then(function(response) {
         TaskActions.addTask(response);
-        ListService.getList();
+        CategoryService.getCategory();
         return true;
       });
   }

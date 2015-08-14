@@ -57,7 +57,7 @@ export default AuthenticatedComponent(class Task extends React.Component {
 
   addTask(e) {
     e.preventDefault();
-    TaskService.addTask(this.props.listId, this.state.name, this.state.description)
+    TaskService.addTask(this.props.categoryId, this.state.name, this.state.description)
     .catch(function(err) {
       alert("There's an error adding task");
       console.log("Error adding task", err);
@@ -82,6 +82,17 @@ export default AuthenticatedComponent(class Task extends React.Component {
     }
 
     var nbTask = this.props.task.length;
+
+    var shownTask = Object.keys(this.props.task).filter(function (key) {
+      var task = this.props.task[key];
+      if (this.props.categoryId) {
+        return task.categoryId == this.props.categoryId;
+      }
+
+      return task;
+    }, this);
+
+    var nbShownTask = shownTask.length;
 
     return (
       <main id="main-container">
@@ -111,7 +122,7 @@ export default AuthenticatedComponent(class Task extends React.Component {
                                   </li>
                               </ul>
                               <div className="block-title text-normal">
-                                  <strong>{nbTask}</strong> <span className="font-w400">tasks</span>
+                                  <strong>{nbShownTask} / {nbTask}</strong> <span className="font-w400">tasks</span>
                               </div>
                           </div>
                           <div className="block-content">
@@ -124,7 +135,7 @@ export default AuthenticatedComponent(class Task extends React.Component {
                               <div className="pull-r-l">
                                   <ul className="list list-timeline pull-t">
                                   {
-                                    Object.keys(this.props.task).map(function (key) {
+                                    shownTask.map(function (key) {
                                       var task = this.props.task[key];
                                       return (
                                         <OneTask task={task} />
@@ -159,9 +170,6 @@ export default AuthenticatedComponent(class Task extends React.Component {
                                     <i className="fa fa-plus fa-fw list-timeline-icon bg-default">
                                     </i>
                                     <div className="list-timeline-content">
-                                        <label className="css-input css-checkbox css-checkbox-primary pull-right push-100-r">
-                                          <input type="checkbox" /><span></span>
-                                        </label>
                                         <p className="font-w600 ">
                                           <button type="button" className="btn btn-default btn-xs" onClick={this.toggleAdd.bind(this, !this.state.showAdd)}>
                                             Add task

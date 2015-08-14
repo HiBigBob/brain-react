@@ -4,7 +4,7 @@ import App from './components/App'
 import Login from './components/Login';
 import Signup from './components/Signup';
 import Home from './components/Home';
-import List from './components/List';
+import Category from './components/Category';
 import RouterContainer from './services/RouterContainer';
 import LoginActions from './actions/LoginActions';
 import './style.css';
@@ -14,7 +14,7 @@ var routes = (
     <Route name="login" handler={Login}/>
     <Route name="signup" handler={Signup}/>
     <Route name="home" path="/" handler={Home}/>
-    <Route name="list" handler={List}/>
+    <Route name="category" handler={Category}/>
   </Route>
 );
 

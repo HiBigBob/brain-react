@@ -1,11 +1,11 @@
 import React from 'react';
 import AuthenticatedComponent from './AuthenticatedComponent';
 
-export default AuthenticatedComponent(class List extends React.Component {
+export default AuthenticatedComponent(class Category extends React.Component {
   render() {
     return (
       <li onClick={this.props.onClick}>
-        <a href="#">{this.props.list.name}</a>
+        <a href="#">{this.props.category.name}</a>
       </li>
     );
   }
