@@ -32,15 +32,26 @@ export default AuthenticatedComponent(class Task extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showBlock: true,
+      showAdd: false,
       name: '',
       description: '',
-      showAdd: false
+      filter: {
+        completed: false
+      }
     };
   }
 
   toggleBlock(value) {
     this.setState({showBlock: value});
+  }
+
+  toggleFilter(completed) {
+    this.setState(
+      {
+        filter: {
+          completed: completed
+        }
+      });
   }
 
   toggleAdd(value) {
@@ -65,15 +76,6 @@ export default AuthenticatedComponent(class Task extends React.Component {
   }
 
   render() {
-    var classBlock = 'block block-themed';
-    var classIconBlock = 'text-default-lighter fa-lg fa';
-    if (!this.state.showBlock) {
-      classBlock += ' block-opt-hidden';
-      classIconBlock += ' fa-caret-square-o-down';
-    } else {
-      classIconBlock += ' fa-caret-square-o-up';
-    }
-
     var classAdd = 'display-none';
     var classAddLink = 'display-block';
     if (this.state.showAdd) {
@@ -81,15 +83,23 @@ export default AuthenticatedComponent(class Task extends React.Component {
       classAddLink = 'display-none';
     }
 
+    var classFilter = "fa text-primary push-5-l push-5-r";
+    var classFilterCompleted = classFilter;
+    if (this.state.filter.completed) {
+      classFilterCompleted += " fa-check-square-o";
+    } else {
+      classFilterCompleted += " fa-square-o";
+    }
+
     var nbTask = this.props.task.length;
 
     var shownTask = Object.keys(this.props.task).filter(function (key) {
       var task = this.props.task[key];
       if (this.props.categoryId) {
-        return task.categoryId == this.props.categoryId;
+        return task.categoryId == this.props.categoryId && task.completed == this.state.filter.completed;
       }
 
-      return task;
+      return task.completed == this.state.filter.completed;
     }, this);
 
     var nbShownTask = shownTask.length;
@@ -100,36 +110,19 @@ export default AuthenticatedComponent(class Task extends React.Component {
               <div className="row items-push">
                   <div className="col-sm-7">
                       <h1 className="page-heading">
-                          Task <small> lets go.</small>
+                          Today <small> lets go. {nbShownTask} / {nbTask}</small>
                       </h1>
-                  </div>
-                  <div className="col-sm-5 text-right hidden-xs">
-                      <ol className="breadcrumb push-10-t">
-                          <li>List</li>
-                          <li><a className="link-effect" href="">Task</a></li>
-                      </ol>
                   </div>
               </div>
           </div>
           <div className="content">
               <div className="row">
                   <div className="col-sm-12 col-lg-12">
-                      <div className={classBlock}>
-                          <div className="block-header bg-primary">
-                              <ul className="block-options">
-                                  <li>
-                                      <button type="button" onClick={this.toggleBlock.bind(this, !this.state.showBlock)}><i className={classIconBlock}></i></button>
-                                  </li>
-                              </ul>
-                              <div className="block-title text-normal">
-                                  <strong>{nbShownTask} / {nbTask}</strong> <span className="font-w400">tasks</span>
-                              </div>
-                          </div>
+                      <div className="block block-themed">
                           <div className="block-content">
                               <div className="push">
                                   <div className="btn-group">
-                                      <button className="btn btn-default btn-xs" type="button"><i className="fa fa-square-o text-primary push-5-l push-5-r"></i> <span className="hidden-xs">Active</span></button>
-                                      <button className="btn btn-default btn-xs" type="button"><i className="fa fa-check-square-o text-primary push-5-l push-5-r"></i> <span className="hidden-xs">Completed</span></button>
+                                      <button className="btn btn-default btn-xs" type="button" onClick={this.toggleFilter.bind(this, !this.state.filter.completed)}><i className={classFilterCompleted}></i> <span className="hidden-xs">Completed</span></button>
                                   </div>
                               </div>
                               <div className="pull-r-l">
