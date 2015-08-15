@@ -103,7 +103,10 @@ export default AuthenticatedComponent(class Home extends React.Component {
                         </li>
                         <li className="nav-main-heading"><span className="sidebar-mini-hide">Category</span></li>
                         <li onClick={this.select.bind(this, null)}>
-                          <a href="#">All</a>
+                          <a href="#">
+                            <i className="fa fa-bars" />
+                            <span className="sidebar-mini-hide">All</span>
+                          </a>
                         </li>
                         {
                           Object.keys(this.state.category).map(function (key) {

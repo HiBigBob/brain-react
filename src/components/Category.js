@@ -5,7 +5,10 @@ export default AuthenticatedComponent(class Category extends React.Component {
   render() {
     return (
       <li onClick={this.props.onClick}>
-        <a href="#">{this.props.category.name}</a>
+        <a href="#">
+          <i className="fa fa-bars" />
+          <span className="sidebar-mini-hide">{this.props.category.name}</span>
+        </a>
       </li>
     );
   }
