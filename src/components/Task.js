@@ -36,7 +36,8 @@ export default AuthenticatedComponent(class Task extends React.Component {
       name: '',
       description: '',
       filter: {
-        completed: false
+        active: true,
+        completed: true
       }
     };
   }
@@ -45,10 +46,11 @@ export default AuthenticatedComponent(class Task extends React.Component {
     this.setState({showBlock: value});
   }
 
-  toggleFilter(completed) {
+  toggleFilter(active, completed) {
     this.setState(
       {
         filter: {
+          active: active,
           completed: completed
         }
       });
@@ -84,6 +86,20 @@ export default AuthenticatedComponent(class Task extends React.Component {
     }
 
     var classFilter = "fa text-primary push-5-l push-5-r";
+    var classFilterAll = classFilter;
+    if (this.state.filter.completed == this.state.filter.active) {
+      classFilterAll += " fa-check-square-o";
+    } else {
+      classFilterAll += " fa-square-o";
+    }
+
+    var classFilterActive = classFilter;
+    if (this.state.filter.active) {
+      classFilterActive += " fa-check-square-o";
+    } else {
+      classFilterActive += " fa-square-o";
+    }
+
     var classFilterCompleted = classFilter;
     if (this.state.filter.completed) {
       classFilterCompleted += " fa-check-square-o";
@@ -95,11 +111,29 @@ export default AuthenticatedComponent(class Task extends React.Component {
 
     var shownTask = Object.keys(this.props.task).filter(function (key) {
       var task = this.props.task[key];
-      if (this.props.categoryId) {
-        return task.categoryId == this.props.categoryId && task.completed == this.state.filter.completed;
+
+      var completed;
+      if (this.state.filter.active && this.state.filter.completed) {
+
+      } else if (this.state.filter.active) {
+        completed = false;
+      } else if (this.state.filter.completed) {
+        completed = true;
       }
 
-      return task.completed == this.state.filter.completed;
+      if (this.props.categoryId && typeof completed !== 'undefined') {
+        return task.categoryId == this.props.categoryId && task.completed == completed;
+      }
+
+      if (this.props.categoryId) {
+        return task.categoryId == this.props.categoryId;
+      }
+
+      if (typeof completed !== 'undefined') {
+        return task.completed == completed;
+      }
+
+      return task;
     }, this);
 
     var nbShownTask = shownTask.length;
@@ -122,7 +156,9 @@ export default AuthenticatedComponent(class Task extends React.Component {
                           <div className="block-content">
                               <div className="push">
                                   <div className="btn-group">
-                                      <button className="btn btn-default btn-xs" type="button" onClick={this.toggleFilter.bind(this, !this.state.filter.completed)}><i className={classFilterCompleted}></i> <span className="hidden-xs">Completed</span></button>
+                                      <button className="btn btn-default btn-xs" type="button" onClick={this.toggleFilter.bind(this, true, true)}><i className={classFilterAll}></i> <span className="hidden-xs">All</span></button>
+                                      <button className="btn btn-default btn-xs" type="button" onClick={this.toggleFilter.bind(this, !this.state.filter.active, this.state.filter.completed)}><i className={classFilterActive}></i> <span className="hidden-xs">Active</span></button>
+                                      <button className="btn btn-default btn-xs" type="button" onClick={this.toggleFilter.bind(this, this.state.filter.active, !this.state.filter.completed)}><i className={classFilterCompleted}></i> <span className="hidden-xs">Completed</span></button>
                                   </div>
                               </div>
                               <div className="pull-r-l">
