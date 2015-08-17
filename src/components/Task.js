@@ -112,6 +112,10 @@ export default AuthenticatedComponent(class Task extends React.Component {
     var shownTask = Object.keys(this.props.task).filter(function (key) {
       var task = this.props.task[key];
 
+      if (this.props.search && (task.name.toLowerCase().indexOf(this.props.search) === -1 && task.description.toLowerCase().indexOf(this.props.search) === -1)) {
+          return;
+      }
+
       var completed;
       if (this.state.filter.active && this.state.filter.completed) {
 

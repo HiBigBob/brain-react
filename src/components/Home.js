@@ -49,7 +49,8 @@ export default AuthenticatedComponent(class Home extends React.Component {
       category: CategoryStore.category,
       task: TaskStore.task,
       selectingCategory: null,
-      showSideBar: true
+      showSideBar: true,
+      search: ''
     };
   }
 
@@ -59,6 +60,10 @@ export default AuthenticatedComponent(class Home extends React.Component {
 
   toggleSideBar(value) {
     this.setState({showSideBar: value});
+  }
+
+  toggleSearch(value) {
+    this.setState({search: value});
   }
 
   render() {
@@ -72,6 +77,7 @@ export default AuthenticatedComponent(class Home extends React.Component {
 			task = (
 				<Task
         task={this.state.task}
+        search={this.state.search}
         categoryId={categoryId}
         />
 			);
@@ -124,6 +130,7 @@ export default AuthenticatedComponent(class Home extends React.Component {
         <Header
           user={this.state.user}
           onClickSideBar={this.toggleSideBar.bind(this, !this.state.showSideBar)}
+          onSearch={this.toggleSearch.bind(this)}
         />
         {task}
       </div>

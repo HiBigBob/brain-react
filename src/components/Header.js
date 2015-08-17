@@ -13,6 +13,10 @@ export default AuthenticatedComponent(class Header extends React.Component {
     this.setState({showProfile: value});
   }
 
+  handleSearch() {
+    this.props.onSearch(this.refs.filterTextInput.getDOMNode().value.toLowerCase());
+  }
+
   render() {
     var classProfile = 'btn-group';
     if (this.state.showProfile) {
@@ -69,12 +73,10 @@ export default AuthenticatedComponent(class Header extends React.Component {
                   </button>
               </li>
               <li className="js-header-search header-search">
-                  <form className="form-horizontal" action="base_pages_search.html" method="post">
-                      <div className="form-material form-material-primary input-group remove-margin-t remove-margin-b">
-                          <input className="form-control" type="text" id="base-material-text" name="base-material-text" placeholder="Search.." />
-                          <span className="input-group-addon"><i className="si si-magnifier"></i></span>
-                      </div>
-                  </form>
+                  <div className="form-horizontal form-material form-material-primary input-group remove-margin-t remove-margin-b">
+                      <input className="form-control" type="text" id="base-material-text" name="base-material-text" placeholder="Search.." ref="filterTextInput" onChange={this.handleSearch.bind(this)} />
+                      <span className="input-group-addon"><i className="si si-magnifier"></i></span>
+                  </div>
               </li>
           </ul>
       </header>
