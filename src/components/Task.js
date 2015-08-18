@@ -3,7 +3,7 @@ import AuthenticatedComponent from './AuthenticatedComponent';
 import TaskStore from '../stores/TaskStore.js';
 import TaskService from '../services/TaskService.js';
 import MarkDown from './MarkDown';
-
+import DropDown from './DropDown';
 
 var OneTask = React.createClass({
   render() {
@@ -78,6 +78,18 @@ export default AuthenticatedComponent(class Task extends React.Component {
   }
 
   render() {
+
+    var colours = [{
+    	name: "Red",
+    	class: "fa fa-shopping-cart fa-fw text-primary"
+    }, {
+    	name: "Blue",
+    	class: "fa fa-mobile fa-fw text-success"
+    }, {
+    	name: "Green",
+    	class: "fa fa-shopping-cart fa-fw text-gray"
+    }];
+
     var classAdd = 'display-none';
     var classAddLink = 'display-block';
     if (this.state.showAdd) {
@@ -178,7 +190,7 @@ export default AuthenticatedComponent(class Task extends React.Component {
                                   <li className={classAdd}>
                                       <div className="list-timeline-time">
                                       </div>
-                                      <i className="fa fa-plus fa-fw list-timeline-icon bg-primary">
+                                      <i className="fa fa-plus fa-fw list-timeline-icon bg-gray">
                                       </i>
                                       <div className="list-timeline-content">
                                           <p className="font-w600 form-material">
@@ -187,6 +199,7 @@ export default AuthenticatedComponent(class Task extends React.Component {
                                           <p className="font-s13 form-material">
                                           <textarea rows="2" className="form-control form-brain-description" onChange={this.handleDescriptionChange.bind(this)} type="text" placeholder="Title " />
                                           </p>
+                                          Category : <DropDown list={this.props.category} selected={colours[0]} label={""} />
                                           <div className="push-400-l">
                                             <button type="button" className="btn btn-primary btn-xs" onClick={this.addTask.bind(this)}>
                                               Add
@@ -200,7 +213,7 @@ export default AuthenticatedComponent(class Task extends React.Component {
                                   <li className={classAddLink}>
                                     <div className="list-timeline-time">
                                     </div>
-                                    <i className="fa fa-plus fa-fw list-timeline-icon bg-default">
+                                    <i className="fa fa-plus fa-fw list-timeline-icon bg-gray">
                                     </i>
                                     <div className="list-timeline-content">
                                         <p className="font-w600 ">

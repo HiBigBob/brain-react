@@ -78,6 +78,7 @@ export default AuthenticatedComponent(class Home extends React.Component {
 				<Task
         task={this.state.task}
         search={this.state.search}
+        category={this.state.category}
         categoryId={categoryId}
         />
 			);
@@ -110,7 +111,7 @@ export default AuthenticatedComponent(class Home extends React.Component {
                         <li className="nav-main-heading"><span className="sidebar-mini-hide">Category</span></li>
                         <li onClick={this.select.bind(this, null)}>
                           <a href="#">
-                            <i className="fa fa-bars" />
+                            <i className="fa fa-bars fa-fw" />
                             <span className="sidebar-mini-hide">All</span>
                           </a>
                         </li>
