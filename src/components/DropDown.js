@@ -11,7 +11,6 @@ export default class DropDown extends React.Component {
 
 	select(item) {
     this.setState({ selected: item });
-    console.log(this.state.selected);
 	}
 
 	show(value) {

@@ -199,7 +199,7 @@ export default AuthenticatedComponent(class Task extends React.Component {
                                           <p className="font-s13 form-material">
                                           <textarea rows="2" className="form-control form-brain-description" onChange={this.handleDescriptionChange.bind(this)} type="text" placeholder="Title " />
                                           </p>
-                                          Category : <DropDown list={this.props.category} selected={colours[0]} label={""} />
+                                          Category : <DropDown list={this.props.category} label={""} />
                                           <div className="push-400-l">
                                             <button type="button" className="btn btn-primary btn-xs" onClick={this.addTask.bind(this)}>
                                               Add
