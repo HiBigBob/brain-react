@@ -79,22 +79,9 @@ export default AuthenticatedComponent(class Task extends React.Component {
 
   render() {
 
-    var colours = [{
-    	name: "Red",
-    	class: "fa fa-shopping-cart fa-fw text-primary"
-    }, {
-    	name: "Blue",
-    	class: "fa fa-mobile fa-fw text-success"
-    }, {
-    	name: "Green",
-    	class: "fa fa-shopping-cart fa-fw text-gray"
-    }];
-
     var classAdd = 'display-none';
-    var classAddLink = 'display-block';
     if (this.state.showAdd) {
       classAdd = 'display-block';
-      classAddLink = 'display-none';
     }
 
     var classFilter = "fa text-primary push-5-l push-5-r";
@@ -172,6 +159,7 @@ export default AuthenticatedComponent(class Task extends React.Component {
                           <div className="block-content">
                               <div className="push">
                                   <div className="btn-group">
+                                      <button className="btn btn-default btn-xs push-50-r push-20-l" type="button" onClick={this.toggleAdd.bind(this, !this.state.showAdd)}><i className="fa fa-plus fa-fw"></i></button>
                                       <button className="btn btn-default btn-xs" type="button" onClick={this.toggleFilter.bind(this, true, true)}><i className={classFilterAll}></i> <span className="hidden-xs">All</span></button>
                                       <button className="btn btn-default btn-xs" type="button" onClick={this.toggleFilter.bind(this, !this.state.filter.active, this.state.filter.completed)}><i className={classFilterActive}></i> <span className="hidden-xs">Active</span></button>
                                       <button className="btn btn-default btn-xs" type="button" onClick={this.toggleFilter.bind(this, this.state.filter.active, !this.state.filter.completed)}><i className={classFilterCompleted}></i> <span className="hidden-xs">Completed</span></button>
@@ -199,7 +187,7 @@ export default AuthenticatedComponent(class Task extends React.Component {
                                           <p className="font-s13 form-material">
                                           <textarea rows="2" className="form-control form-brain-description" onChange={this.handleDescriptionChange.bind(this)} type="text" placeholder="Title " />
                                           </p>
-                                          Category : <DropDown list={this.props.category} label={""} />
+                                          <DropDown list={this.props.category} label={"Choose one category"} />
                                           <div className="push-400-l">
                                             <button type="button" className="btn btn-primary btn-xs" onClick={this.addTask.bind(this)}>
                                               Add
@@ -209,19 +197,6 @@ export default AuthenticatedComponent(class Task extends React.Component {
                                             </button>
                                           </div>
                                       </div>
-                                  </li>
-                                  <li className={classAddLink}>
-                                    <div className="list-timeline-time">
-                                    </div>
-                                    <i className="fa fa-plus fa-fw list-timeline-icon bg-gray">
-                                    </i>
-                                    <div className="list-timeline-content">
-                                        <p className="font-w600 ">
-                                          <button type="button" className="btn btn-default btn-xs" onClick={this.toggleAdd.bind(this, !this.state.showAdd)}>
-                                            Add task
-                                          </button>
-                                        </p>
-                                    </div>
                                   </li>
                                   </ul>
                               </div>

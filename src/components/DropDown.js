@@ -37,8 +37,9 @@ export default class DropDown extends React.Component {
 
     return (
         <div className={"btn-group" + (this.state.listVisible ? " open" : "")}>
-          <button className="btn btn-default btn-xs dropdown-toggle" type="button" onClick={this.show.bind(this, !this.state.listVisible)}>
-              {this.state.selected ? this.state.selected.name : this.props.label}
+          <button className="btn btn-default btn-xs dropdown-toggle " type="button" onClick={this.show.bind(this, !this.state.listVisible)}>
+
+              <span className="pull-left">{this.state.selected ? this.state.selected.name : this.props.label}</span>
               <span className="caret"></span>
           </button>
           <ul className="dropdown-menu">
