@@ -81,7 +81,7 @@ export default AuthenticatedComponent(class Task extends React.Component {
 
     var classAdd = 'display-none';
     if (this.state.showAdd) {
-      classAdd = 'display-block';
+      classAdd = 'display-block list list-timeline';
     }
 
     var classFilter = "fa text-primary push-5-l push-5-r";
@@ -166,6 +166,24 @@ export default AuthenticatedComponent(class Task extends React.Component {
                                   </div>
                               </div>
                               <div className="pull-r-l">
+                                  <div className={classAdd}>
+                                      <i className="fa fa-plus fa-fw list-timeline-icon bg-gray">
+                                      </i>
+                                      <div className="list-timeline-content">
+                                          <div className="pull-right push-100-r push-50-t">
+                                            <button type="button" className="btn btn-primary btn-xs" onClick={this.addTask.bind(this)}>
+                                              <i className="fa fa-check bg-primary" />
+                                            </button>
+                                          </div>
+                                          <p className="font-w600 form-material">
+                                            <input className="form-control form-brain-title" onChange={this.handleTitleChange.bind(this)} type="text" placeholder="Title " />
+                                          </p>
+                                          <p className="font-s13 form-material">
+                                            <textarea rows="2" className="form-control form-brain-description" onChange={this.handleDescriptionChange.bind(this)} type="text" placeholder="Title " />
+                                          </p>
+                                          <DropDown list={this.props.category} label={"Choose one"} />
+                                      </div>
+                                  </div>
                                   <ul className="list list-timeline pull-t">
                                   {
                                     shownTask.map(function (key) {
@@ -175,29 +193,6 @@ export default AuthenticatedComponent(class Task extends React.Component {
                                       );
                                     }, this)
                                   }
-                                  <li className={classAdd}>
-                                      <div className="list-timeline-time">
-                                      </div>
-                                      <i className="fa fa-plus fa-fw list-timeline-icon bg-gray">
-                                      </i>
-                                      <div className="list-timeline-content">
-                                          <p className="font-w600 form-material">
-                                          <input className="form-control form-brain-title" onChange={this.handleTitleChange.bind(this)} type="text" placeholder="Title " />
-                                          </p>
-                                          <p className="font-s13 form-material">
-                                          <textarea rows="2" className="form-control form-brain-description" onChange={this.handleDescriptionChange.bind(this)} type="text" placeholder="Title " />
-                                          </p>
-                                          <DropDown list={this.props.category} label={"Choose one category"} />
-                                          <div className="push-400-l">
-                                            <button type="button" className="btn btn-primary btn-xs" onClick={this.addTask.bind(this)}>
-                                              Add
-                                            </button>
-                                            <button type="button" className="btn btn-default btn-xs" onClick={this.toggleAdd.bind(this, !this.state.showAdd)}>
-                                              Cancel
-                                            </button>
-                                          </div>
-                                      </div>
-                                  </li>
                                   </ul>
                               </div>
                           </div>

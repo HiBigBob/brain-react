@@ -9813,6 +9813,12 @@ a.block.block-link-hover3:active {
 .push-50-l {
   margin-left: 50px !important;
 }
+.push-70-r {
+  margin-right: 400px !important;
+}
+.push-70-l {
+  margin-left: 400px !important;
+}
 .push-100 {
   margin-bottom: 100px !important;
 }
@@ -13800,13 +13806,13 @@ div.tagsinput span.tag a:hover {
 }
 
 .form-brain-title {
-  width:70%;
+  width:55%;
   height: 21px;
   margin-top: -10px;
 }
 
 .form-brain-description {
-  width:70%;
+  width:55%;
   height: 21px;
   margin-top: -10px;
 }
@@ -13817,4 +13823,13 @@ div.tagsinput span.tag a:hover {
 
 .display-block {
   display: block;
+}
+.push-70-p-r {
+  margin-right: 70% !important;
+}
+.push-70-p-l {
+  margin-left: 70% !important;
+}
+.dropdown-brain {
+  margin-top: -10px !important;
 }
