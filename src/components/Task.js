@@ -172,7 +172,7 @@ export default AuthenticatedComponent(class Task extends React.Component {
                                       <div className="list-timeline-content">
                                           <div className="pull-right push-100-r push-50-t">
                                             <button type="button" className="btn btn-primary btn-xs" onClick={this.addTask.bind(this)}>
-                                              <i className="fa fa-check bg-primary" />
+                                              <i className="fa fa-check bg-primary" /> Add 
                                             </button>
                                           </div>
                                           <p className="font-w600 form-material">
