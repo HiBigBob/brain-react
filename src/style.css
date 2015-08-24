@@ -2714,8 +2714,6 @@ tbody.collapse.in {
   display: none;
   float: left;
   min-width: 160px;
-  height: 145px;
-  overflow-x: hidden;
   padding: 5px 0;
   margin: 2px 0 0;
   font-size: 14px;
@@ -13841,4 +13839,8 @@ div.tagsinput span.tag a:hover {
 }
 .push-88-l {
   margin-left: 88px !important;
+}
+.dropdown-menu-brain {
+  height: 145px;
+  overflow-x: hidden;
 }

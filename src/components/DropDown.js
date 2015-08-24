@@ -25,7 +25,7 @@ export default class DropDown extends React.Component {
   }
 
   componentDidUpdate() {
-    React.findDOMNode(this.refs.filterTextInput).focus(); 
+    React.findDOMNode(this.refs.filterTextInput).focus();
   }
 
 	render() {
@@ -76,7 +76,7 @@ export default class DropDown extends React.Component {
               <span className="pull-left text-gray-dark push-70-r">{this.state.selected ? this.state.selected.name : this.props.label}</span>
               <span className="caret"></span>
           </button>
-          <ul className="dropdown-menu">
+          <ul className="dropdown-menu dropdown-menu-brain">
             {items}
           </ul>
         </div>
