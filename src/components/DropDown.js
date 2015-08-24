@@ -12,6 +12,7 @@ export default class DropDown extends React.Component {
 	select(item) {
     this.setState({ selected: item });
     this.props.selected(item._id);
+    this.setState({ listVisible: false });
 	}
 
 	show(value) {
@@ -37,7 +38,7 @@ export default class DropDown extends React.Component {
     }
 
     return (
-        <div className={"btn-group form-material dropdown-brain" + (this.state.listVisible ? " open" : "")}>
+        <div className={"btn-group form-material dropdown-brain" + (this.state.listVisible ? " open" : "")} >
           <button className="btn btn-default btn-xs dropdown-toggle form-control" type="button" onClick={this.show.bind(this, !this.state.listVisible)}>
               <span className="pull-left text-gray-dark push-70-r">{this.state.selected ? this.state.selected.name : this.props.label}</span>
               <span className="caret"></span>

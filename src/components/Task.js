@@ -191,7 +191,8 @@ export default AuthenticatedComponent(class Task extends React.Component {
                                           <DropDown
                                             list={this.props.category}
                                             selected={this.handleCategoryIdChange.bind(this)}
-                                            label={"Choose one"} />
+                                            label={"Choose one"}
+                                             />
                                       </div>
                                   </div>
                                   <ul className="list list-timeline pull-t">
