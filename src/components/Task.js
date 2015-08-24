@@ -35,6 +35,7 @@ export default AuthenticatedComponent(class Task extends React.Component {
       showAdd: false,
       name: '',
       description: '',
+      categoryId: '',
       filter: {
         active: true,
         completed: true
@@ -68,13 +69,19 @@ export default AuthenticatedComponent(class Task extends React.Component {
     this.setState({description: event.target.value});
   }
 
+  handleCategoryIdChange(value) {
+    this.setState({categoryId: value});
+  }
+
   addTask(e) {
     e.preventDefault();
-    TaskService.addTask(this.props.categoryId, this.state.name, this.state.description)
-    .catch(function(err) {
+    TaskService
+      .addTask(this.state.categoryId, this.state.name, this.state.description)
+      .catch(function(err) {
       alert("There's an error adding task");
       console.log("Error adding task", err);
-    });
+      })
+    ;
   }
 
   render() {
@@ -170,9 +177,9 @@ export default AuthenticatedComponent(class Task extends React.Component {
                                       <i className="fa fa-plus fa-fw list-timeline-icon bg-gray">
                                       </i>
                                       <div className="list-timeline-content">
-                                          <div className="pull-right push-100-r push-50-t">
+                                          <div className="pull-right push-88-r push-100-t">
                                             <button type="button" className="btn btn-primary btn-xs" onClick={this.addTask.bind(this)}>
-                                              <i className="fa fa-check bg-primary" /> Add 
+                                              <i className="fa fa-check bg-primary" /> Add
                                             </button>
                                           </div>
                                           <p className="font-w600 form-material">
@@ -181,7 +188,10 @@ export default AuthenticatedComponent(class Task extends React.Component {
                                           <p className="font-s13 form-material">
                                             <textarea rows="2" className="form-control form-brain-description" onChange={this.handleDescriptionChange.bind(this)} type="text" placeholder="Title " />
                                           </p>
-                                          <DropDown list={this.props.category} label={"Choose one"} />
+                                          <DropDown
+                                            list={this.props.category}
+                                            selected={this.handleCategoryIdChange.bind(this)}
+                                            label={"Choose one"} />
                                       </div>
                                   </div>
                                   <ul className="list list-timeline pull-t">

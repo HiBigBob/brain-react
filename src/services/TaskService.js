@@ -20,7 +20,7 @@ class TaskService {
     });
   }
 
-  addTask(listId, name, description) {
+  addTask(categoryId, name, description) {
     return this.handleTask(when(request({
       url: TASK_URL,
       method: 'POST',
@@ -38,7 +38,6 @@ class TaskService {
     return taskPromise
       .then(function(response) {
         TaskActions.addTask(response);
-        CategoryService.getCategory();
         return true;
       });
   }
