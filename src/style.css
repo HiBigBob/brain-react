@@ -2714,6 +2714,8 @@ tbody.collapse.in {
   display: none;
   float: left;
   min-width: 160px;
+  height: 145px;
+  overflow-x: hidden;
   padding: 5px 0;
   margin: 2px 0 0;
   font-size: 14px;
