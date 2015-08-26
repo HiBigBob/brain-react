@@ -7597,6 +7597,7 @@ a.list-group-item:focus {
 }
 .js-table-checkable tbody tr,
 .js-table-sections-header > tr {
+}
   cursor: pointer;
 }
 .js-table-sections-header > tr > td:first-child > i {
@@ -8004,7 +8005,6 @@ a.list-group-item:focus {
   }
 }
 #sidebar {
-  width: 230px;
   background-color: #2c343f;
 }
 .sidebar-l #sidebar {
@@ -8033,7 +8033,6 @@ a.list-group-item:focus {
 }
 @media screen and (min-width: 992px) {
   #sidebar {
-    width: 230px;
     -webkit-transition: none;
     transition: none;
   }
