@@ -16,8 +16,8 @@ class TaskStore extends BaseStore {
         this.emitChange();
         break;
       case TASK_ADD:
-          this.emitChange();
-          break;
+        this.emitChange();
+        break;
       default:
         break;
     };
