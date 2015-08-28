@@ -50,7 +50,12 @@ var OneTask2 = class Task extends React.Component {
     }, this);
 
     return (
-      <tbody className={"js-table-sections-header table-brain-content" + (this.state.open ? " open" : "")} >
+      <tbody className={
+        this.props.task.description ?
+        "js-table-sections-header table-brain-content" + (this.state.open ? " open" : "")
+        :
+        'table-brain-content'
+      } >
           <tr className="active">
               <td className="text-center check" onClick={this.checked.bind(this, !this.state.checked)}>
                 <label className="css-input css-checkbox css-checkbox-primary remove-margin-t remove-margin-b">
