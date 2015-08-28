@@ -74,8 +74,9 @@ export default class DropDown extends React.Component {
         <div className={"btn-group form-material dropdown-brain" + (this.state.listVisible ? " open" : "")}>
           <button className="form-control form-brain-choose" type="button" onClick={this.show.bind(this, !this.state.listVisible)}>
               <span className="pull-left text-gray-dark">
+                <i className="pull-right fa fa-angle-down padding-top-3"></i>
                 <i className={this.state.selected ? this.state.selected.class : this.props.class}></i>
-                {this.state.selected ? this.state.selected.name : this.props.label}
+                <span className="push-10-l">{this.state.selected ? this.state.selected.name : this.props.label}</span>
               </span>
           </button>
           <ul className="dropdown-menu dropdown-menu-brain">

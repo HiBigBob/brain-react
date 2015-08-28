@@ -172,12 +172,19 @@ export default AuthenticatedComponent(class Task extends React.Component {
 
       return category._id == this.props.categoryId;
     }, this);
+    console.log(shownCategory);
+    var selectedCategoryObject;
+    if (shownCategory.length > 0) {
+      selectedCategoryObject = shownCategory.map(function (key) {
+        var category = this.props.category[key];
+        return {"class": category.class, "name": category.name};
+      }, this)
+    }
+    console.log(selectedCategoryObject);
+    if (selectedCategoryObject) {
+        console.log(selectedCategoryObject[0].class);
+    }
 
-    var cat = shownCategory.map(function (key) {
-      var category = this.props.category[key];
-      return {"class": category.class, "name": category.name};
-    }, this)
-    console.log(cat);
 
     var classAdd = 'display-none';
     if (this.state.showAdd) {
@@ -289,7 +296,8 @@ export default AuthenticatedComponent(class Task extends React.Component {
                                         <DropDown
                                           list={this.props.category}
                                           selected={this.handleCategoryIdChange.bind(this)}
-                                          label={"Category"}
+                                          label={selectedCategoryObject ? selectedCategoryObject[0].name : 'Category'}
+                                          class={selectedCategoryObject ? selectedCategoryObject[0].class : ''}
                                            />
                                       </div>
                                     </div>
@@ -308,6 +316,9 @@ export default AuthenticatedComponent(class Task extends React.Component {
                                       <div className="col-sm-2 col-lg-2">
                                         <button type="button" className="btn btn-primary btn-xs" onClick={this.addTask.bind(this)}>
                                           <i className="fa fa-check bg-primary" /> Add
+                                        </button>
+                                        <button type="button" className="btn btn-default btn-xs" onClick={this.toggleAdd.bind(this, !this.state.showAdd)}>
+                                          Cancel
                                         </button>
                                       </div>
                                     </div>
