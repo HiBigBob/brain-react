@@ -177,7 +177,7 @@ export default AuthenticatedComponent(class Task extends React.Component {
 
       return category._id == this.props.categoryId;
     }, this);
-    console.log(shownCategory);
+
     var selectedCategoryObject;
     if (shownCategory.length > 0) {
       selectedCategoryObject = shownCategory.map(function (key) {
@@ -185,11 +185,6 @@ export default AuthenticatedComponent(class Task extends React.Component {
         return {"class": category.class, "name": category.name};
       }, this)
     }
-    console.log(selectedCategoryObject);
-    if (selectedCategoryObject) {
-        console.log(selectedCategoryObject[0].class);
-    }
-
 
     var classAdd = 'display-none';
     if (this.state.showAdd) {
