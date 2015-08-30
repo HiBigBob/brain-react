@@ -7,6 +7,7 @@ class TaskStore extends BaseStore {
     super();
     this.subscribe(() => this._registerToActions.bind(this))
     this._task = '';
+    this._tmp = '';
   }
 
   _registerToActions(action) {
@@ -16,7 +17,9 @@ class TaskStore extends BaseStore {
         this.emitChange();
         break;
       case TASK_ADD:
-        this._task = action.task;
+        this._tmp = JSON.parse(JSON.stringify(this._task));
+        this._tmp.push(action.task)
+        this._task = this._tmp;
         this.emitChange();
         break;
       default:
