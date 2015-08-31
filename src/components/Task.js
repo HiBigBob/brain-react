@@ -164,10 +164,12 @@ export default AuthenticatedComponent(class Task extends React.Component {
     TaskService
       .addTask(this.state.categoryId, this.state.name, this.state.description)
       .catch(function(err) {
-      alert("There's an error adding task");
-      console.log("Error adding task", err);
+        alert("There's an error adding task");
+        console.log("Error adding task", err);
       })
     ;
+    React.findDOMNode(this.refs.title).value = '';
+    React.findDOMNode(this.refs.description).value = '';
   }
 
   render() {
@@ -289,7 +291,7 @@ export default AuthenticatedComponent(class Task extends React.Component {
                                     <div className="row padding-top-15">
                                       <div className="col-sm-6 col-lg-6">
                                         <p className="font-w600 form-material ">
-                                          <input className="form-control form-brain-title" onChange={this.handleTitleChange.bind(this)} type="text" placeholder="Title " />
+                                          <input className="form-control form-brain-title" onChange={this.handleTitleChange.bind(this)} type="text" placeholder="Title " ref="title" />
                                         </p>
                                       </div>
                                       <div className="col-sm-6 col-lg-6">
@@ -304,7 +306,7 @@ export default AuthenticatedComponent(class Task extends React.Component {
                                     <div className="row">
                                       <div className="col-sm-12 col-lg-12">
                                         <p className="font-s13 form-material">
-                                          <textarea rows="5" className="form-control form-brain-description" onChange={this.handleDescriptionChange.bind(this)} type="text" placeholder="Description " />
+                                          <textarea rows="5" className="form-control form-brain-description" onChange={this.handleDescriptionChange.bind(this)} type="text" placeholder="Description " ref="description" />
                                         </p>
                                       </div>
                                       <div className="col-sm-6 col-lg-6">
