@@ -13,7 +13,7 @@ export default {
       actionType: TASK_ADD,
       task: task
     })
-  }
+  },
   checkTask: (task) => {
     AppDispatcher.dispatch({
       actionType: TASK_CHECK,

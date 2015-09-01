@@ -1,4 +1,4 @@
-import {TASK_GET, TASK_ADD} from '../constants/TaskConstants';
+import {TASK_GET, TASK_ADD, TASK_CHECK} from '../constants/TaskConstants';
 import BaseStore from './BaseStore';
 
 class TaskStore extends BaseStore {
