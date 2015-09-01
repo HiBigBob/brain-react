@@ -5,27 +5,7 @@ import TaskService from '../services/TaskService.js';
 import MarkDown from './MarkDown';
 import DropDown from './DropDown';
 
-var OneTask = React.createClass({
-  render() {
-    return (
-      <li>
-          <div className="list-timeline-time">
-            12 hrs ago
-          </div>
-          <i className="fa fa-shopping-cart fa-fw list-timeline-icon bg-success">
-          </i>
-          <div className="list-timeline-content">
-              <p className="font-w600">{this.props.task.name}</p>
-              <p className="font-s13">
-                <MarkDown text={this.props.task.description} />
-              </p>
-          </div>
-      </li>
-    );
-  }
-});
-
-var OneTask2 = class Task extends React.Component {
+var MainTask = class Task extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -39,6 +19,7 @@ var OneTask2 = class Task extends React.Component {
 	}
 
   checked(value) {
+    this.props.task.completed = value;
 		this.setState({ checked: value });
 	}
 
@@ -57,9 +38,9 @@ var OneTask2 = class Task extends React.Component {
         'table-brain-content'
       } >
           <tr className="active">
-              <td className="text-center check" onClick={this.checked.bind(this, !this.state.checked)}>
+              <td className="text-center check" >
                 <label className="css-input css-checkbox css-checkbox-primary remove-margin-t remove-margin-b">
-                    <input type="checkbox" id="check-all" name="check-all" className={(this.state.checked ? "active" : "")} /><span></span>
+                    <input type="checkbox" id="check-all" name="check-all" checked={this.props.task.completed} onChange={this.checked.bind(this, !this.props.task.completed)} /><span></span>
                 </label>
               </td>
               <td className="font-w600 content" onClick={this.show.bind(this, !this.state.open)}>
@@ -90,7 +71,7 @@ var OneTask2 = class Task extends React.Component {
   }
 };
 
-var OneTask3 = React.createClass({
+var DescriptionTask = React.createClass({
   render() {
     return (
       <tbody className="table-brain-description">
@@ -254,11 +235,11 @@ export default AuthenticatedComponent(class Task extends React.Component {
     shownTask.map(function (key) {
       var task = this.props.task[key];
       items.push(
-        <OneTask2 task={task} category={this.props.category} />
+        <MainTask task={task} category={this.props.category} />
       );
       if (task.description.length > 0) {
         items.push(
-          <OneTask3 task={task} />
+          <DescriptionTask task={task} />
         );
       }
     }, this);
