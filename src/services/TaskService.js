@@ -1,6 +1,6 @@
 import request from 'reqwest';
 import when from 'when';
-import {TASK_URL} from '../constants/TaskConstants';
+import {TASK_URL,TASK_CHECK_URL} from '../constants/TaskConstants';
 import TaskActions from '../actions/TaskActions';
 import LoginStore from '../stores/LoginStore.js';
 import CategoryService from '../services/CategoryService.js';
@@ -17,6 +17,22 @@ class TaskService {
     })
     .then(function(response) {
       TaskActions.getTask(response);
+    });
+  }
+
+  checkTask(taskId, completed) {
+    request({
+      url: TASK_CHECK_URL + taskId,
+      method: 'POST',
+      headers: {
+        'x-access-token': LoginStore.jwt
+      },
+      data: {
+        completed
+      }
+    })
+    .then(function(response) {
+      TaskActions.checkTask(response);
     });
   }
 

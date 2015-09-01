@@ -91,10 +91,6 @@ var DescriptionTask = React.createClass({
   }
 });
 
-
-
-
-
 export default AuthenticatedComponent(class Task extends React.Component {
   constructor(props) {
     super(props);

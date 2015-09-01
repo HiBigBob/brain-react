@@ -1,5 +1,5 @@
 import AppDispatcher from '../dispatchers/AppDispatcher';
-import {TASK_GET, TASK_ADD} from '../constants/TaskConstants';
+import {TASK_GET, TASK_ADD, TASK_CHECK} from '../constants/TaskConstants';
 
 export default {
   getTask: (task) => {
@@ -11,6 +11,12 @@ export default {
   addTask: (task) => {
     AppDispatcher.dispatch({
       actionType: TASK_ADD,
+      task: task
+    })
+  }
+  checkTask: (task) => {
+    AppDispatcher.dispatch({
+      actionType: TASK_CHECK,
       task: task
     })
   }
