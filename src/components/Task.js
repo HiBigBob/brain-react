@@ -21,6 +21,10 @@ var MainTask = class Task extends React.Component {
   checked(value) {
     this.props.task.completed = value;
 		this.setState({ checked: value });
+
+    TaskService
+      .checkTask(this.props.task._id, value)
+    ;
 	}
 
   render() {
