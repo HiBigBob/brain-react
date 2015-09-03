@@ -105,7 +105,7 @@ export default AuthenticatedComponent(class Task extends React.Component {
       categoryId: '',
       filter: {
         active: true,
-        completed: true
+        completed: false
       }
     };
   }
