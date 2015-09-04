@@ -105,8 +105,21 @@ export default AuthenticatedComponent(class Home extends React.Component {
                     </div>
                     <div className="side-content">
                       <ul className="nav-main">
+                        <li className="nav-main-heading"><span className="sidebar-mini-hide">Dashboard {this.props.user.username}</span></li>
                         <li>
-                            <a className="active" href="index.html"><i className="si si-speedometer"></i><span className="sidebar-mini-hide">Dashboard {this.props.user.username}</span></a>
+                            <a className="" href="#">
+                              <i className="fa fa-calendar-o"></i><span className="sidebar-mini-hide">Today</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a className="" href="#">
+                              <i className="fa fa-calendar-plus-o"></i><span className="sidebar-mini-hide">Week</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a className="" href="#">
+                              <i className="fa fa-calendar"></i><span className="sidebar-mini-hide">All</span>
+                            </a>
                         </li>
                         <li className="nav-main-heading"><span className="sidebar-mini-hide">Category</span></li>
                         <li onClick={this.select.bind(this, null)}>
