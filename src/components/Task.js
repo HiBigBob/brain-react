@@ -266,7 +266,7 @@ export default AuthenticatedComponent(class Task extends React.Component {
                           <div className="block-content">
                               <div className="push">
                                   <div className="btn-group">
-                                      <button className="btn btn-default btn-xs push-50-r push-20-l" type="button" onClick={this.toggleAdd.bind(this, !this.state.showAdd)}><i className="fa fa-plus fa-fw"></i></button>
+                                      <button className="btn btn-default btn-xs push-50-r push-30-l" type="button" onClick={this.toggleAdd.bind(this, !this.state.showAdd)}><i className="fa fa-plus fa-fw"></i></button>
                                       <button className="btn btn-default btn-xs" type="button" onClick={this.toggleFilter.bind(this, true, true)}><i className={classFilterAll}></i> <span className="hidden-xs">All</span></button>
                                       <button className="btn btn-default btn-xs" type="button" onClick={this.toggleFilter.bind(this, !this.state.filter.active, this.state.filter.completed)}><i className={classFilterActive}></i> <span className="hidden-xs">Active</span></button>
                                       <button className="btn btn-default btn-xs" type="button" onClick={this.toggleFilter.bind(this, this.state.filter.active, !this.state.filter.completed)}><i className={classFilterCompleted}></i> <span className="hidden-xs">Completed</span></button>
