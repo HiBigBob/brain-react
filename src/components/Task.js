@@ -102,6 +102,7 @@ export default AuthenticatedComponent(class Task extends React.Component {
       showAdd: false,
       name: '',
       description: '',
+      date: '',
       categoryId: '',
       filter: {
         active: true,
@@ -134,6 +135,10 @@ export default AuthenticatedComponent(class Task extends React.Component {
 
   handleDescriptionChange(event) {
     this.setState({description: event.target.value});
+  }
+
+  handleDateChange(event) {
+    this.setState({date: event.target.value});
   }
 
   handleCategoryIdChange(value) {
@@ -271,7 +276,7 @@ export default AuthenticatedComponent(class Task extends React.Component {
                                   <div className={classAdd}>
                                     <div className="row padding-top-15">
                                       <div className="col-sm-6 col-lg-6">
-                                        <p className="font-w600 form-material ">
+                                        <p className="form-material ">
                                           <input className="form-control form-brain-title" onChange={this.handleTitleChange.bind(this)} type="text" placeholder="Title " ref="title" />
                                         </p>
                                       </div>
@@ -282,6 +287,9 @@ export default AuthenticatedComponent(class Task extends React.Component {
                                           label={selectedCategoryObject ? selectedCategoryObject[0].name : 'Category'}
                                           class={selectedCategoryObject ? selectedCategoryObject[0].class : ''}
                                            />
+                                        <p className="form-material ">
+                                          <input className="form-control form-brain-date" onChange={this.handleDateChange.bind(this)} type="text" placeholder="Date " ref="date" />
+                                        </p>
                                       </div>
                                     </div>
                                     <div className="row">
