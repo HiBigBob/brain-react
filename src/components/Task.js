@@ -67,7 +67,7 @@ var MainTask = class Task extends React.Component {
                   }
               </td>
               <td className="hidden-xs date">
-                  <em className="text-muted">June 15, 2015 12:16</em>
+                  <em className="text-muted">{this.props.task.deadLineTime}</em>
               </td>
           </tr>
       </tbody>
