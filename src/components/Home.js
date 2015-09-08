@@ -50,7 +50,8 @@ export default AuthenticatedComponent(class Home extends React.Component {
       task: TaskStore.task,
       selectingCategory: null,
       showSideBar: true,
-      search: ''
+      search: '',
+      showToday: true
     };
   }
 
@@ -64,6 +65,10 @@ export default AuthenticatedComponent(class Home extends React.Component {
 
   toggleSearch(value) {
     this.setState({search: value});
+  }
+
+  toggleToday(value) {
+    this.setState({showToday: value});
   }
 
   render() {
@@ -80,6 +85,7 @@ export default AuthenticatedComponent(class Home extends React.Component {
         search={this.state.search}
         category={this.state.category}
         categoryId={categoryId}
+        today={this.state.showToday}
         />
 			);
 		}
@@ -106,17 +112,12 @@ export default AuthenticatedComponent(class Home extends React.Component {
                     <div className="side-content">
                       <ul className="nav-main">
                         <li className="nav-main-heading"><span className="sidebar-mini-hide">Dashboard {this.props.user.username}</span></li>
-                        <li>
+                        <li onClick={this.toggleToday.bind(this, true)}>
                             <a className="" href="#">
                               <i className="fa fa-calendar-o"></i><span className="sidebar-mini-hide">Today</span>
                             </a>
                         </li>
-                        <li>
-                            <a className="" href="#">
-                              <i className="fa fa-calendar-plus-o"></i><span className="sidebar-mini-hide">Week</span>
-                            </a>
-                        </li>
-                        <li>
+                        <li onClick={this.toggleToday.bind(this, false)}>
                             <a className="" href="#">
                               <i className="fa fa-calendar"></i><span className="sidebar-mini-hide">All</span>
                             </a>
