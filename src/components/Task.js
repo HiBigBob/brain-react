@@ -205,8 +205,14 @@ export default AuthenticatedComponent(class Task extends React.Component {
 
     var shownTask = Object.keys(this.props.task).filter(function (key) {
       var task = this.props.task[key];
+      var date = new Date(task.deadLineTime);
+      var now = new Date();
 
       if (this.props.search && (task.name.toLowerCase().indexOf(this.props.search) === -1 && task.description.toLowerCase().indexOf(this.props.search) === -1)) {
+          return;
+      }
+
+      if (this.props.today && (date.toDateString() !== now.toDateString())) {
           return;
       }
 
