@@ -28,6 +28,7 @@ var MainTask = class Task extends React.Component {
 	}
 
   render() {
+    var date = new Date(this.props.task.deadLineTime);
     var shownCategory = Object.keys(this.props.category).filter(function (key) {
       var category = this.props.category[key];
 
@@ -67,7 +68,7 @@ var MainTask = class Task extends React.Component {
                   }
               </td>
               <td className="hidden-xs date">
-                  <em className="text-muted">{this.props.task.deadLineTime}</em>
+                  <em className="text-muted">{date.toDateString()}</em>
               </td>
           </tr>
       </tbody>
