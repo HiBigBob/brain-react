@@ -262,7 +262,7 @@ export default AuthenticatedComponent(class Task extends React.Component {
               <div className="row items-push">
                   <div className="col-sm-7">
                       <h1 className="page-heading">
-                          Today <small> lets go. {nbShownTask} / {nbTask}</small>
+                          { this.props.today ? 'Today' : 'All' }
                       </h1>
                   </div>
               </div>
@@ -276,6 +276,9 @@ export default AuthenticatedComponent(class Task extends React.Component {
                                       <button className="btn btn-default btn-xs" type="button" onClick={this.toggleFilter.bind(this, true, true)}><i className={classFilterAll}></i> <span className="hidden-xs">All</span></button>
                                       <button className="btn btn-default btn-xs" type="button" onClick={this.toggleFilter.bind(this, !this.state.filter.active, this.state.filter.completed)}><i className={classFilterActive}></i> <span className="hidden-xs">Active</span></button>
                                       <button className="btn btn-default btn-xs" type="button" onClick={this.toggleFilter.bind(this, this.state.filter.active, !this.state.filter.completed)}><i className={classFilterCompleted}></i> <span className="hidden-xs">Completed</span></button>
+                                  </div>
+                                  <div className="btn-group pull-right push-20-r">
+                                      <small> {nbShownTask} / {nbTask}</small>
                                   </div>
                               </div>
                               <div className="pull-r-l">
