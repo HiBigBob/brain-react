@@ -105,9 +105,7 @@ export default AuthenticatedComponent(class Home extends React.Component {
                         <button className="btn btn-link text-gray pull-right hidden-md hidden-lg" type="button" data-toggle="layout" data-action="sidebar_close">
                             <i className="fa fa-times"></i>
                         </button>
-                        <a className="h5 text-white" href="index.html">
-                            <i className="fa fa-check-square text-primary"></i> <span className="h5 font-w600 sidebar-mini-hide">brain</span>
-                        </a>
+                        <i className="fa fa-check-square text-primary"></i> <span className="h5 font-w600 text-white sidebar-mini-hide push-5-l">brain</span>
                     </div>
                     <div className="side-content">
                       <ul className="nav-main">
