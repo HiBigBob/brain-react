@@ -109,7 +109,7 @@ export default AuthenticatedComponent(class Home extends React.Component {
                     </div>
                     <div className="side-content">
                       <ul className="nav-main">
-                        <li className="nav-main-heading"><span className="sidebar-mini-hide">Dashboard {this.props.user.username}</span></li>
+                        <li className="nav-main-heading"><span className="sidebar-mini-hide">Dashboard {this.props.user ? this.props.user.username : ''}</span></li>
                         <li onClick={this.toggleToday.bind(this, true)}>
                             <a className="" href="#">
                               <i className="fa fa-calendar-o"></i><span className="sidebar-mini-hide">Today</span>
