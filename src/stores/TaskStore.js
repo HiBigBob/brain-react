@@ -17,9 +17,13 @@ class TaskStore extends BaseStore {
         this.emitChange();
         break;
       case TASK_ADD:
-        this._tmp = JSON.parse(JSON.stringify(this._task));
-        this._tmp.push(action.task)
-        this._task = this._tmp;
+        if (this._task !== '') {
+          this._tmp = JSON.parse(JSON.stringify(this._task));
+          this._tmp.push(action.task)
+          this._task = this._tmp;
+        } else {
+          this._task = action.task;
+        }
         this.emitChange();
         break;
       case TASK_CHECK:
