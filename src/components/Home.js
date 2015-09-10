@@ -111,12 +111,12 @@ export default AuthenticatedComponent(class Home extends React.Component {
                       <ul className="nav-main">
                         <li className="nav-main-heading"><span className="sidebar-mini-hide">Dashboard {this.props.user ? this.props.user.username : ''}</span></li>
                         <li onClick={this.toggleToday.bind(this, true)}>
-                            <a className="" href="#">
+                            <a className={this.state.showToday ? 'active' : ''} href="#">
                               <i className="fa fa-calendar-o"></i><span className="sidebar-mini-hide">Today</span>
                             </a>
                         </li>
                         <li onClick={this.toggleToday.bind(this, false)}>
-                            <a className="" href="#">
+                            <a className={!this.state.showToday ? 'active' : ''} href="#">
                               <i className="fa fa-calendar"></i><span className="sidebar-mini-hide">All</span>
                             </a>
                         </li>
