@@ -9262,6 +9262,7 @@ a.block.block-link-hover3:active {
   color: rgba(255, 255, 255, 0.5);
 }
 .nav-main a:hover,
+.nav-main a.active,
 .nav-main a:focus {
   color: rgba(255, 255, 255, 0.5);
   background-color: rgba(0, 0, 0, 0.2);
@@ -9272,7 +9273,7 @@ a.block.block-link-hover3:active {
 }
 .nav-main a.active,
 .nav-main a.active:hover {
-  color: #fff;
+  /*color: #fff;*/
 }
 .nav-main a.active > i,
 .nav-main a.active:hover > i {
