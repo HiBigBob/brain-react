@@ -130,8 +130,10 @@ export default AuthenticatedComponent(class Home extends React.Component {
                         {
                           Object.keys(this.state.category).map(function (key) {
                             var category = this.state.category[key];
+                            var active = this.state.selectingCategory && this.state.selectingCategory._id == category._id ? true : false;
+                            
                             return (
-                              <Category category={category} onClick={this.select.bind(this, category)} />
+                              <Category category={category} onClick={this.select.bind(this, category)} activeCategory={active} />
                             );
                           }, this)
                         }

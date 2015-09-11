@@ -5,7 +5,7 @@ export default AuthenticatedComponent(class Category extends React.Component {
   render() {
     return (
       <li onClick={this.props.onClick}>
-        <a href="#">
+        <a href="#" className={this.props.activeCategory ? 'active' : '' }>
           <i className={this.props.category.class} />
           <span className="sidebar-mini-hide">{this.props.category.name}</span>
         </a>
