@@ -164,7 +164,7 @@ export default AuthenticatedComponent(class Task extends React.Component {
     var shownCategory = Object.keys(this.props.category).filter(function (key) {
       var category = this.props.category[key];
 
-      return category._id == this.props.selectedCategory;
+      return this.props.selectedCategory && category._id == this.props.selectedCategory._id;
     }, this);
 
     var selectedCategoryObject;
