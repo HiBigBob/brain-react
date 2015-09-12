@@ -149,7 +149,7 @@ export default AuthenticatedComponent(class Task extends React.Component {
   addTask(e) {
     e.preventDefault();
     TaskService
-      .addTask((!this.state.categoryId ? this.props.categoryId : this.state.categoryId), this.state.name, this.state.description)
+      .addTask((!this.state.categoryId ? this.props.selectedCategory._id : this.state.categoryId), this.state.name, this.state.description)
       .catch(function(err) {
         alert("There's an error adding task");
         console.log("Error adding task", err);
@@ -164,7 +164,7 @@ export default AuthenticatedComponent(class Task extends React.Component {
     var shownCategory = Object.keys(this.props.category).filter(function (key) {
       var category = this.props.category[key];
 
-      return category._id == this.props.categoryId;
+      return category._id == this.props.selectedCategory;
     }, this);
 
     var selectedCategoryObject;
@@ -226,12 +226,12 @@ export default AuthenticatedComponent(class Task extends React.Component {
         completed = true;
       }
 
-      if (this.props.categoryId && typeof completed !== 'undefined') {
-        return task.categoryId == this.props.categoryId && task.completed == completed;
+      if (this.props.selectedCategory && typeof completed !== 'undefined') {
+        return task.categoryId == this.props.selectedCategory._id && task.completed == completed;
       }
 
-      if (this.props.categoryId) {
-        return task.categoryId == this.props.categoryId;
+      if (this.props.selectedCategory) {
+        return task.categoryId == this.props.selectedCategory._id;
       }
 
       if (typeof completed !== 'undefined') {
@@ -262,6 +262,7 @@ export default AuthenticatedComponent(class Task extends React.Component {
               <div className="row items-push">
                   <div className="col-sm-7">
                       <h1 className="page-heading">
+                          { this.props.selectedCategory ? this.props.selectedCategory.name + ' - ' : '' }
                           { this.props.today ? 'Today' : 'All' }
                       </h1>
                   </div>

@@ -48,7 +48,7 @@ export default AuthenticatedComponent(class Home extends React.Component {
     return {
       category: CategoryStore.category,
       task: TaskStore.task,
-      selectingCategory: null,
+      selectedCategory: null,
       showSideBar: true,
       search: '',
       showToday: true
@@ -56,7 +56,7 @@ export default AuthenticatedComponent(class Home extends React.Component {
   }
 
   select(category) {
-    this.setState({selectingCategory: category});
+    this.setState({selectedCategory: category});
   }
 
   toggleSideBar(value) {
@@ -74,8 +74,8 @@ export default AuthenticatedComponent(class Home extends React.Component {
   render() {
     var task;
     var categoryId;
-    if (this.state.selectingCategory) {
-      categoryId = this.state.selectingCategory._id;
+    if (this.state.selectedCategory) {
+      categoryId = this.state.selectedCategory._id;
     }
 
     if (this.state.task) {
@@ -84,7 +84,7 @@ export default AuthenticatedComponent(class Home extends React.Component {
         task={this.state.task}
         search={this.state.search}
         category={this.state.category}
-        categoryId={categoryId}
+        selectedCategory={this.state.selectedCategory}
         today={this.state.showToday}
         />
 			);
@@ -130,8 +130,8 @@ export default AuthenticatedComponent(class Home extends React.Component {
                         {
                           Object.keys(this.state.category).map(function (key) {
                             var category = this.state.category[key];
-                            var active = this.state.selectingCategory && this.state.selectingCategory._id == category._id ? true : false;
-                            
+                            var active = this.state.selectedCategory && this.state.selectedCategory._id == category._id ? true : false;
+
                             return (
                               <Category category={category} onClick={this.select.bind(this, category)} activeCategory={active} />
                             );
