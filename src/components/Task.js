@@ -278,7 +278,7 @@ export default AuthenticatedComponent(class Task extends React.Component {
                                     <button className="btn btn-default btn-xs" type="button" onClick={this.toggleFilter.bind(this, !this.state.filter.active, this.state.filter.completed)}><i className={classFilterActive}></i> <span className="hidden-xs">Active</span></button>
                                     <button className="btn btn-default btn-xs" type="button" onClick={this.toggleFilter.bind(this, this.state.filter.active, !this.state.filter.completed)}><i className={classFilterCompleted}></i> <span className="hidden-xs">Completed</span></button>
                                   </div>
-                                  <div className="btn-group pull-right push-20-r">
+                                  <div className="btn-group pull-right push-30-r">
                                       <small> {nbShownTask} / {nbTask}</small>
                                   </div>
                               </div>
