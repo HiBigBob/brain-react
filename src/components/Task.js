@@ -96,7 +96,7 @@ var DescriptionTask = React.createClass({
   }
 });
 
-export default AuthenticatedComponent(class Task extends React.Component {
+export default class Task extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -336,4 +336,4 @@ export default AuthenticatedComponent(class Task extends React.Component {
       </main>
     )
   }
-});
+};
