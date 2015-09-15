@@ -83,7 +83,7 @@ export default AuthenticatedComponent(class Home extends React.Component {
 				<Task
         task={this.state.task}
         search={this.state.search}
-        category={this.state.category}
+        category={this.state.category ? this.state.category : null}
         selectedCategory={this.state.selectedCategory}
         today={this.state.showToday}
         />
@@ -93,6 +93,18 @@ export default AuthenticatedComponent(class Home extends React.Component {
     var classSideBar = 'sidebar-l sidebar-o side-scroll header-navbar-fixed';
     if (!this.state.showSideBar) {
       classSideBar += ' sidebar-mini';
+    }
+
+    var shownCategory;
+    if (this.state.category) {
+      shownCategory = Object.keys(this.state.category).map(function (key) {
+        var category = this.state.category[key];
+        var active = this.state.selectedCategory && this.state.selectedCategory._id == category._id ? true : false;
+
+        return (
+          <Category category={category} onClick={this.select.bind(this, category)} activeCategory={active} />
+        );
+      }, this);
     }
 
     return (
@@ -127,23 +139,13 @@ export default AuthenticatedComponent(class Home extends React.Component {
                             <span className="sidebar-mini-hide">All</span>
                           </a>
                         </li>
-                        {
-                          Object.keys(this.state.category).map(function (key) {
-                            var category = this.state.category[key];
-                            var active = this.state.selectedCategory && this.state.selectedCategory._id == category._id ? true : false;
-
-                            return (
-                              <Category category={category} onClick={this.select.bind(this, category)} activeCategory={active} />
-                            );
-                          }, this)
-                        }
+                        { shownCategory }
                         </ul>
                     </div>
                 </div>
             </div>
         </nav>
         <Header
-          user={this.state.user}
           onClickSideBar={this.toggleSideBar.bind(this, !this.state.showSideBar)}
           onSearch={this.toggleSearch.bind(this)}
         />

@@ -72,12 +72,14 @@ export default class Task extends React.Component {
   }
 
   render() {
+    var shownCategory = [];
+    if (this.props.category) {
+      shownCategory = Object.keys(this.props.category).filter(function (key) {
+        var category = this.props.category[key];
 
-    var shownCategory = Object.keys(this.props.category).filter(function (key) {
-      var category = this.props.category[key];
-
-      return this.props.selectedCategory && category._id == this.props.selectedCategory._id;
-    }, this);
+        return this.props.selectedCategory && category._id == this.props.selectedCategory._id;
+      }, this);
+    }
 
     var selectedCategoryObject;
     if (shownCategory.length > 0) {

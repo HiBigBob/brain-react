@@ -36,16 +36,18 @@ export default class DropDown extends React.Component {
       </li>
     );
 
-    var shownList = Object.keys(this.props.list).filter(function (key) {
-      var list = this.props.list[key];
+    var shownList = [];
+    if (this.props.list) {
+      shownList = Object.keys(this.props.list).filter(function (key) {
+        var list = this.props.list[key];
 
-      if (this.state.search && (list.name.toLowerCase().indexOf(this.state.search) === -1)) {
-          return;
-      }
+        if (this.state.search && (list.name.toLowerCase().indexOf(this.state.search) === -1)) {
+            return;
+        }
 
-      return list;
-    }, this);
-
+        return list;
+      }, this);
+    }
 
     shownList.map(function (key) {
       var item = this.props.list[key];
