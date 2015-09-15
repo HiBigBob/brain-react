@@ -33,28 +33,16 @@ export default AuthenticatedComponent(class Header extends React.Component {
                           <span className="caret"></span>
                       </button>
                       <ul className="dropdown-menu dropdown-menu-right">
-                          <li className="dropdown-header">Profile {this.props.user.username}</li>
                           <li>
-                              <a tabindex="-1" href="base_pages_inbox.html">
-                                  <i className="si si-envelope-open pull-right"></i>
-                                  <span className="badge badge-primary pull-right">0</span>Inbox
-                              </a>
-                          </li>
-                          <li>
-                              <a tabindex="-1" href="base_pages_profile.html">
-                                  <i className="si si-user pull-right"></i>
+                              <a tabindex="-1" href="#">
+                                  <i className="fa fa-user pull-left"></i>
                                   Profile
-                              </a>
-                          </li>
-                          <li>
-                              <a tabindex="-1" href="javascript:void(0)">
-                                  <i className="si si-settings pull-right"></i>Settings
                               </a>
                           </li>
                           <li className="divider"></li>
                           <li>
                               <a href="" onClick={this.props.onLogOut}>
-                                <i className="si si-logout pull-right"></i>Log out
+                                <i className="fa fa-sign-out pull-left"></i>Log out
                               </a>
                           </li>
                       </ul>
